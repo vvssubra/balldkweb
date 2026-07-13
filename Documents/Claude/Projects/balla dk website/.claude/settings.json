@@ -1,0 +1,8 @@
+{
+  "model": "claude-sonnet-4-6",
+  "autoMemoryEnabled": true,
+  "permissions": {
+    "allow": ["Bash(git *)", "Bash(npm *)", "Bash(pnpm *)", "Bash(npx *)"],
+    "deny": ["Read(.env)", "Read(.env.*)", "Bash(rm -rf *)"]
+  }
+}
