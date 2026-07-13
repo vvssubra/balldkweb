@@ -39,8 +39,8 @@ export function RisePyramid({ onSelectPath }: RisePyramidProps) {
                 role="tab"
                 aria-selected={activeKey === level.key}
                 onClick={() => setActiveKey(level.key)}
-                className={`rounded-xl border-2 bg-card px-6 py-4 text-left transition-colors ${
-                  activeKey === level.key ? LEVEL_COLOR[level.key] : "border-border"
+                className={`rise-card rounded-xl border-2 px-6 py-4 text-left transition-colors ${
+                  activeKey === level.key ? LEVEL_COLOR[level.key] : "hover:bg-white/50"
                 }`}
               >
                 <span className="font-heading text-lg font-bold">{level.name}</span>
@@ -49,7 +49,7 @@ export function RisePyramid({ onSelectPath }: RisePyramidProps) {
             ))}
           </div>
 
-          <div className={`rounded-2xl border-2 bg-card p-8 ${LEVEL_COLOR[active.key]}`}>
+          <div className={`rise-card rounded-2xl border-2 p-8 ${LEVEL_COLOR[active.key]}`}>
             <h3 className="font-heading text-2xl font-bold">{active.name}</h3>
             <p className="mt-1 text-sm font-medium text-muted-foreground">{active.step}</p>
 

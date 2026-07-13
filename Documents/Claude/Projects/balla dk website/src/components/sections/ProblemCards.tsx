@@ -6,8 +6,11 @@ interface ProblemCardsProps {
 
 export function ProblemCards({ onFindStep }: ProblemCardsProps) {
   return (
-    <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6" aria-labelledby="problem-heading">
-      <div className="mx-auto max-w-2xl text-center">
+    <section className="relative mx-auto max-w-6xl overflow-hidden px-4 py-20 sm:px-6" aria-labelledby="problem-heading">
+      <div className="pointer-events-none absolute -top-16 right-0 size-72 rounded-full bg-gold/25 blur-3xl" aria-hidden="true" />
+      <div className="pointer-events-none absolute -bottom-16 left-0 size-72 rounded-full bg-rise-r/15 blur-3xl" aria-hidden="true" />
+
+      <div className="relative mx-auto max-w-2xl text-center">
         <h2 id="problem-heading" className="text-3xl font-bold sm:text-4xl">
           What Is Missing From Your Financial Life?
         </h2>
@@ -16,11 +19,22 @@ export function ProblemCards({ onFindStep }: ProblemCardsProps) {
         </p>
       </div>
 
-      <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-        {PROBLEM_CARDS.map((card) => (
-          <div key={card.title} className="rounded-2xl border border-border bg-card p-6 shadow-sm">
-            <h3 className="font-heading text-lg font-semibold">{card.title}</h3>
-            <p className="mt-2 text-sm text-muted-foreground">{card.description}</p>
+      <div className="relative mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {PROBLEM_CARDS.map((card, index) => (
+          <div
+            key={card.title}
+            className={
+              index === 0
+                ? "rise-card rounded-2xl p-8 transition-all hover:-translate-y-1 hover:shadow-md sm:col-span-2 lg:col-span-2 lg:row-span-2 lg:flex lg:flex-col lg:justify-center"
+                : "rise-card rounded-2xl p-6 transition-all hover:-translate-y-1 hover:shadow-md"
+            }
+          >
+            <h3 className={index === 0 ? "font-heading text-xl font-semibold" : "font-heading text-lg font-semibold"}>
+              {card.title}
+            </h3>
+            <p className={index === 0 ? "mt-3 text-base text-muted-foreground" : "mt-2 text-sm text-muted-foreground"}>
+              {card.description}
+            </p>
           </div>
         ))}
       </div>

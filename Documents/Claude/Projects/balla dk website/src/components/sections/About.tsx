@@ -29,7 +29,7 @@ export function About({ onDiscoverStage }: AboutProps) {
             purpose-driven career through the agency model — with a focus on systems, clarity, action and
             accountability.
           </p>
-          <blockquote className="mt-6 border-l-4 border-gold pl-4 font-heading text-lg italic text-foreground">
+          <blockquote className="mt-8 rounded-xl bg-secondary p-6 font-heading text-lg italic text-foreground">
             It is not only about earning more. It is about building the right plan, taking the right
             actions and surrounding yourself with the right people.
           </blockquote>

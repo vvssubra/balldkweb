@@ -352,7 +352,7 @@ const AntiGravityCanvas: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="absolute inset-0 z-0 overflow-hidden bg-[#0A0E1A] cursor-crosshair"
+      className="absolute inset-0 z-0 overflow-hidden bg-navy cursor-crosshair"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
@@ -374,8 +374,8 @@ interface HeroContentProps {
 
 const HeroContent: React.FC<HeroContentProps> = ({ onStartScorecard, onExploreAgency }) => {
   return (
-    <div className="absolute inset-0 z-10 flex flex-col items-center justify-center px-4 pt-16">
-      <div className="max-w-4xl w-full text-center space-y-8">
+    <div className="absolute inset-0 z-10 flex flex-col items-center justify-center px-4 pt-16 pointer-events-none">
+      <div className="max-w-4xl w-full text-center space-y-8 pointer-events-auto">
         <div className="flex justify-center">
           <Image
             src="/images/balla-dk-hero.jpg"
@@ -383,17 +383,17 @@ const HeroContent: React.FC<HeroContentProps> = ({ onStartScorecard, onExploreAg
             width={140}
             height={140}
             priority
-            className="size-28 rounded-full border-2 border-[#D4AF37]/60 object-cover object-top sm:size-36"
+            className="size-28 rounded-full border-2 border-gold/60 object-cover object-top transition-all duration-300 hover:border-gold hover:shadow-[0_0_25px_rgba(212,175,55,0.4)] sm:size-36"
           />
         </div>
 
         <div className="inline-block">
-          <span className="py-1 px-3 border border-[#D4AF37]/30 rounded-full text-xs font-mono text-[#D4AF37] tracking-widest uppercase bg-[#D4AF37]/5 backdrop-blur-sm">
+          <span className="py-1 px-3 border border-gold/30 rounded-full text-xs font-mono text-gold tracking-widest uppercase bg-gold/5 backdrop-blur-sm">
             Free R.I.S.E. Scorecard
           </span>
         </div>
 
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40 tracking-tighter">
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tighter">
           Build a Life.
           <br />
           Not Just Pay Bills.
@@ -407,18 +407,24 @@ const HeroContent: React.FC<HeroContentProps> = ({ onStartScorecard, onExploreAg
         <p className="text-sm text-white/40">Free assessment. Personalised result. No obligation.</p>
 
         <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button
-            type="button"
-            onClick={onStartScorecard}
-            className="group relative inline-flex items-center gap-3 px-8 py-4 bg-[#D4AF37] text-[#0A0E1A] rounded-full font-bold tracking-wide overflow-hidden transition-transform hover:scale-105 active:scale-95"
-          >
-            <span className="relative z-10">Take the Free R.I.S.E. Scorecard</span>
-            <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
-          </button>
+          <div className="relative rounded-full p-[2px] overflow-hidden transition-transform duration-300 hover:scale-105 active:scale-95">
+            <span
+              aria-hidden="true"
+              className="cta-trail-ring absolute inset-[-50%] bg-[conic-gradient(from_0deg,transparent_0deg,transparent_260deg,rgba(255,255,255,0.9)_300deg,var(--gold)_330deg,transparent_360deg)]"
+            />
+            <button
+              type="button"
+              onClick={onStartScorecard}
+              className="group relative z-10 inline-flex items-center gap-3 px-8 py-4 bg-gold text-navy rounded-full font-bold tracking-wide transition-shadow duration-300 hover:shadow-[0_0_30px_rgba(212,175,55,0.5)]"
+            >
+              <span className="relative z-10">Take the Free R.I.S.E. Scorecard</span>
+              <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
           <button
             type="button"
             onClick={onExploreAgency}
-            className="inline-flex items-center gap-2 px-8 py-4 border border-white/20 text-white rounded-full font-medium tracking-wide transition-colors hover:border-[#D4AF37]/60 hover:text-[#D4AF37]"
+            className="inline-flex items-center gap-2 px-8 py-4 border border-white/20 text-white rounded-full font-medium tracking-wide transition-colors hover:border-gold/60 hover:bg-gold/10 hover:text-gold"
           >
             Explore the Agency Opportunity
           </button>
@@ -437,7 +443,7 @@ interface ParticleEffectHeroProps {
 
 export default function ParticleEffectHero({ onStartScorecard, onExploreAgency }: ParticleEffectHeroProps) {
   return (
-    <div id="top" className="relative w-full min-h-screen bg-[#0A0E1A] overflow-hidden selection:bg-[#D4AF37] selection:text-[#0A0E1A]">
+    <div id="top" className="relative w-full min-h-screen bg-navy overflow-hidden selection:bg-gold selection:text-navy">
       <AntiGravityCanvas />
       <HeroContent onStartScorecard={onStartScorecard} onExploreAgency={onExploreAgency} />
 

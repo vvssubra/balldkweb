@@ -6,7 +6,7 @@ interface FinalCtaProps {
 
 export function FinalCta({ onStartScorecard }: FinalCtaProps) {
   return (
-    <section className="relative overflow-hidden bg-[#0A0E1A] px-4 py-20 text-white sm:px-6">
+    <section className="relative overflow-hidden bg-navy px-4 py-20 text-white sm:px-6">
       <Image
         src="/images/balla-dk-cta.jpg"
         alt=""
@@ -21,13 +21,13 @@ export function FinalCta({ onStartScorecard }: FinalCtaProps) {
           <button
             type="button"
             onClick={onStartScorecard}
-            className="w-full rounded-full bg-[#D4AF37] px-6 py-3 text-sm font-bold text-[#0A0E1A] transition-transform hover:scale-105 active:scale-95 sm:w-auto"
+            className="w-full rounded-full bg-gold px-6 py-3 text-sm font-bold text-navy transition-transform hover:scale-105 active:scale-95 sm:w-auto"
           >
             Take the Free R.I.S.E. Scorecard
           </button>
           <a
             href="#agents"
-            className="w-full rounded-full border border-white/30 px-6 py-3 text-center text-sm font-bold text-white transition-colors hover:border-[#D4AF37] hover:text-[#D4AF37] sm:w-auto"
+            className="w-full rounded-full border border-white/30 px-6 py-3 text-center text-sm font-bold text-white transition-colors hover:border-gold hover:text-gold sm:w-auto"
           >
             Explore the Agency Opportunity
           </a>

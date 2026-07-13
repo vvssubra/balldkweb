@@ -11,6 +11,7 @@
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-heading);
   --color-gold: var(--gold);
+  --color-navy: var(--navy);
   --color-rise-r: var(--rise-r);
   --color-rise-i: var(--rise-i);
   --color-rise-s: var(--rise-s);
@@ -62,9 +63,9 @@
   --popover-foreground: oklch(0.16 0.02 260);
   --primary: oklch(0.19 0.03 260);
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0.005 260);
+  --secondary: oklch(0.94 0.012 260);
   --secondary-foreground: oklch(0.19 0.03 260);
-  --muted: oklch(0.97 0.005 260);
+  --muted: oklch(0.94 0.012 260);
   --muted-foreground: oklch(0.45 0.02 260);
   --accent: oklch(0.97 0.02 90);
   --accent-foreground: oklch(0.19 0.03 260);
@@ -73,6 +74,7 @@
   --input: oklch(0.9 0.005 260);
   --ring: oklch(0.75 0.12 85);
   --gold: oklch(0.75 0.12 85);
+  --navy: oklch(0.16 0.03 258);
   --rise-r: oklch(0.6 0.15 250);
   --rise-i: oklch(0.75 0.15 70);
   --rise-s: oklch(0.62 0.14 155);
@@ -139,6 +141,26 @@
   }
   h1, h2, h3, h4 {
     @apply font-heading;
+  }
+}
+
+@layer components {
+  .rise-card {
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 2px rgba(10, 14, 26, 0.04);
+  }
+}
+
+@layer utilities {
+  .cta-trail-ring {
+    animation: cta-trail-spin 3s linear infinite;
+  }
+}
+
+@keyframes cta-trail-spin {
+  to {
+    transform: rotate(360deg);
   }
 }
 
