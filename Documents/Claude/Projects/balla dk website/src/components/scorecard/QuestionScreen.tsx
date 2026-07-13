@@ -25,15 +25,15 @@ export function QuestionScreen({
 
   return (
     <div className="mx-auto flex h-full max-w-lg flex-col px-4 py-10">
-      <div className="flex items-center justify-between">
+      <div className="-mx-2 flex items-center justify-between">
         {canGoBack ? (
-          <button type="button" onClick={onBack} className="text-sm font-medium text-muted-foreground hover:text-foreground">
+          <button type="button" onClick={onBack} className="p-2 text-sm font-medium text-muted-foreground hover:text-foreground">
             Back
           </button>
         ) : (
           <span />
         )}
-        <button type="button" onClick={onClose} className="text-sm text-muted-foreground hover:text-foreground">
+        <button type="button" onClick={onClose} className="p-2 text-sm text-muted-foreground hover:text-foreground">
           Close
         </button>
       </div>

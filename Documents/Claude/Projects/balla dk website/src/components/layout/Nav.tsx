@@ -119,7 +119,7 @@ export function Nav({ onStartScorecard }: NavProps) {
 
         <button
           type="button"
-          className="text-white md:hidden"
+          className="-mr-2 p-2 text-white md:hidden"
           aria-label={drawerOpen ? "Close menu" : "Open menu"}
           aria-expanded={drawerOpen}
           onClick={() => setDrawerOpen((open) => !open)}

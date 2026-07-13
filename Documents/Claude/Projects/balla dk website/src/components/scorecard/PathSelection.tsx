@@ -17,7 +17,7 @@ export function PathSelection({ onSelect, onClose }: PathSelectionProps) {
       <button
         type="button"
         onClick={onClose}
-        className="absolute right-4 top-4 text-sm text-muted-foreground hover:text-foreground"
+        className="absolute right-2 top-2 p-2 text-sm text-muted-foreground hover:text-foreground"
       >
         Close
       </button>

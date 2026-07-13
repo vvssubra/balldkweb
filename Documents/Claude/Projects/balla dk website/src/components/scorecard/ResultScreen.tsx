@@ -38,8 +38,8 @@ export function ResultScreen({ firstName, path, categoryResults, missingLetter, 
 
   return (
     <div className="mx-auto flex h-full max-w-lg flex-col px-4 py-10">
-      <div className="flex justify-end">
-        <button type="button" onClick={onClose} className="text-sm text-muted-foreground hover:text-foreground">
+      <div className="-mx-2 -mt-2 flex justify-end">
+        <button type="button" onClick={onClose} className="p-2 text-sm text-muted-foreground hover:text-foreground">
           Close
         </button>
       </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 import { MousePointer2, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 
@@ -57,7 +57,6 @@ const randomRange = (min: number, max: number) => Math.random() * (max - min) + 
 const AntiGravityCanvas: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [debugInfo, setDebugInfo] = useState({ count: 0, fps: 0 });
 
   // Mutable state refs to avoid re-renders during animation loop
   const particlesRef = useRef<Particle[]>([]);
@@ -106,8 +105,6 @@ const AntiGravityCanvas: React.FC = () => {
       });
     }
     backgroundParticlesRef.current = newBgParticles;
-
-    setDebugInfo((prev) => ({ ...prev, count: particleCount + bgCount }));
   }, []);
 
   // Animation Loop
@@ -119,12 +116,7 @@ const AntiGravityCanvas: React.FC = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Calculate Delta Time for smooth animation (optional, but good for FPS calculation)
-    const delta = time - lastTimeRef.current;
     lastTimeRef.current = time;
-    if (delta > 0) {
-      setDebugInfo((prev) => ({ ...prev, fps: Math.round(1000 / delta) }));
-    }
 
     // Clear Canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -357,12 +349,6 @@ const AntiGravityCanvas: React.FC = () => {
       onMouseLeave={handleMouseLeave}
     >
       <canvas ref={canvasRef} className="block w-full h-full" />
-
-      {/* Debug Info Overlay */}
-      <div className="absolute bottom-4 right-4 pointer-events-none text-xs text-white/20 font-mono text-right">
-        <p>{debugInfo.count} entities</p>
-        <p>{debugInfo.fps} FPS</p>
-      </div>
     </div>
   );
 };
@@ -374,7 +360,7 @@ interface HeroContentProps {
 
 const HeroContent: React.FC<HeroContentProps> = ({ onStartScorecard, onExploreAgency }) => {
   return (
-    <div className="absolute inset-0 z-10 flex flex-col items-center justify-center px-4 pt-16 pointer-events-none">
+    <div className="absolute inset-0 z-10 flex flex-col items-center justify-center overflow-y-auto px-4 py-20 pointer-events-none">
       <div className="max-w-4xl w-full text-center space-y-8 pointer-events-auto">
         <div className="flex justify-center">
           <Image
@@ -443,7 +429,7 @@ interface ParticleEffectHeroProps {
 
 export default function ParticleEffectHero({ onStartScorecard, onExploreAgency }: ParticleEffectHeroProps) {
   return (
-    <div id="top" className="relative w-full min-h-screen bg-navy overflow-hidden selection:bg-gold selection:text-navy">
+    <div id="top" className="relative w-full min-h-dvh bg-navy overflow-hidden selection:bg-gold selection:text-navy">
       <AntiGravityCanvas />
       <HeroContent onStartScorecard={onStartScorecard} onExploreAgency={onExploreAgency} />
 
