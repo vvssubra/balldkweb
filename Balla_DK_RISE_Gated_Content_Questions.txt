@@ -1,0 +1,104 @@
+BALLA DK R.I.S.E. GATED CONTENT QUESTIONS
+==========================================
+
+ANSWER SCALE FOR ALL SCORING QUESTIONS
+0 = Not in place
+1 = Starting
+2 = Mostly in place
+3 = Strong and reviewed
+
+ROUTING QUESTION
+What needs to R.I.S.E. next?
+A. My finances and family protection
+B. My income or career
+C. My leadership and team systems
+
+PATH A - R.I.S.E. FINANCIAL HEALTH SCORECARD
+
+R - RESTORE
+1. Emergency savings can cover essential expenses.
+2. Protection needs are understood and recently reviewed.
+3. High-interest debt and monthly cashflow have a clear plan.
+
+I - INCOME
+4. Income has a realistic growth plan.
+5. There is a backup or second-income strategy.
+6. Skills are being developed to increase earning capacity.
+
+S - SUSTAIN
+7. Saving or investing happens consistently.
+8. Investments match goals, time horizon and risk comfort.
+9. Progress is reviewed at least every six months.
+
+E - EMPIRE
+10. Nominees, will or estate arrangements are understood.
+11. Family can locate key financial information.
+12. A long-term legacy, leadership or continuity plan exists.
+
+PATH B - R.I.S.E. CAREER GROWTH SCORECARD
+
+R - READINESS
+1. I can manage a learning period without relying on instant income.
+2. I understand that licensing, effort and compliance are required.
+3. My current financial commitments are visible and manageable.
+
+I - INCOME SKILLS
+4. I am open to performance-based income.
+5. I am willing to learn communication, prospecting and service.
+6. I want a path where income can grow with skill and contribution.
+
+S - SUSTAINABILITY
+7. I can follow a weekly activity plan consistently.
+8. I respond constructively to coaching and feedback.
+9. I prefer long-term skill-building over quick-win hype.
+
+E - EMPIRE POTENTIAL
+10. I want to help other people grow.
+11. I am interested in leadership and team systems.
+12. I want to build impact beyond my own personal production.
+
+OPTIONAL CONTEXT QUESTIONS
+1. What is your biggest goal for the next 12 months?
+2. Which challenge feels most urgent right now?
+3. When would you like to make progress?
+   - Just learning
+   - Within 30 days
+   - This week
+4. Which conversation would be most useful?
+   - Protection
+   - Debt and cashflow
+   - Investing
+   - Career opportunity
+   - Leadership and systems
+
+REQUIRED CONTACT GATE
+1. First name
+2. Email address
+3. WhatsApp number
+4. Path selected
+5. Consent checkbox
+
+CONSENT MICROCOPY
+I agree to receive my personalised R.I.S.E. result and relevant follow-up by email or WhatsApp. I can unsubscribe at any time.
+
+OPTIONAL FIELDS AFTER THE RESULT
+1. Current role
+2. State or city
+3. Preferred contact time
+4. Booking details
+
+SCORING METHOD
+- Each category has three questions.
+- Category raw score: 0 to 9.
+- Normalised score: raw score divided by 9, multiplied by 100.
+- 0-33: Needs Attention
+- 34-66: Developing
+- 67-100: Strong
+- The lowest normalised category becomes the likely missing letter.
+- If two categories tie, use the selected goal, urgency and chosen path as the tie-break.
+
+SAFETY AND ROUTING RULES
+- A recruit with a low Readiness score receives education and a readiness checklist, not a high-pressure career booking.
+- Only show CTAs relevant to the visitor's declared path and result.
+- Do not ask for identity numbers, salary, policy numbers, medical details, bank information or other unnecessary sensitive data inside the scorecard.
+- The scorecard is educational and is not a financial suitability assessment, product recommendation, employment decision or guarantee of results.
