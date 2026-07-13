@@ -13,7 +13,7 @@ export function Faq() {
         Frequently Asked Questions
       </h2>
 
-      <div className="mt-10 divide-y divide-border rounded-2xl border border-border bg-card">
+      <div className="rise-card mt-10 divide-y divide-border/60 rounded-2xl">
         {FAQ_ITEMS.map((item, index) => {
           const isOpen = openIndex === index;
           const panelId = `faq-panel-${index}`;
@@ -28,7 +28,7 @@ export function Faq() {
                   aria-expanded={isOpen}
                   aria-controls={panelId}
                   onClick={() => setOpenIndex(isOpen ? null : index)}
-                  className="flex w-full items-center justify-between gap-4 px-6 py-4 text-left font-medium"
+                  className="flex w-full items-center justify-between gap-4 px-6 py-4 text-left font-medium transition-colors hover:bg-accent"
                 >
                   {item.question}
                   <ChevronDown

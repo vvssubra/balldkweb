@@ -10,7 +10,7 @@ export function OutcomeTransformation() {
           </h2>
         </div>
 
-        <div className="mt-10 overflow-x-auto rounded-2xl border border-border bg-card">
+        <div className="rise-card mt-10 overflow-x-auto rounded-2xl">
           <table className="w-full text-left text-sm">
             <thead>
               <tr className="border-b border-border">

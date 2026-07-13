@@ -15,7 +15,7 @@ export function HowItWorks() {
 
       <ol className="mt-12 grid gap-8 sm:grid-cols-3">
         {HOW_IT_WORKS_STEPS.map((step, index) => (
-          <li key={step.title} className="rounded-2xl border border-border bg-card p-6">
+          <li key={step.title} className="rise-card rounded-2xl p-6">
             <span className="flex size-8 items-center justify-center rounded-full bg-gold text-sm font-bold text-primary">
               {index + 1}
             </span>

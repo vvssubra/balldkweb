@@ -7,12 +7,12 @@ const STATS: readonly { label: string; value: string }[] = [
 
 export function CredibilityStrip() {
   return (
-    <div className="border-y border-white/10 bg-[#0A0E1A] px-4 py-8 sm:px-6">
+    <div className="border-y border-white/10 bg-navy px-4 py-8 sm:px-6">
       <dl className="mx-auto grid max-w-4xl grid-cols-2 gap-6 text-center text-white sm:grid-cols-4">
         {STATS.map((stat) => (
           <div key={stat.label}>
             <dt className="text-xs uppercase tracking-wide text-white/50">{stat.label}</dt>
-            <dd className="mt-1 font-heading text-lg font-bold text-[#D4AF37]">{stat.value}</dd>
+            <dd className="mt-1 font-heading text-lg font-bold text-gold">{stat.value}</dd>
           </div>
         ))}
       </dl>

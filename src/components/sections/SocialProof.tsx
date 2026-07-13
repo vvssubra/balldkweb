@@ -15,7 +15,7 @@ export function SocialProof() {
 
         <div className="mt-12 grid gap-6 sm:grid-cols-3">
           {SOCIAL_PROOF_PLACEHOLDERS.map((item, index) => (
-            <div key={index} className="rounded-2xl border border-dashed border-border bg-card p-6 text-sm">
+            <div key={index} className="rise-card rounded-2xl border-dashed border-gold/40 p-6 text-sm">
               <p className="font-semibold text-foreground">{item.name}</p>
               <p className="mt-2 text-muted-foreground">{item.role}</p>
             </div>
