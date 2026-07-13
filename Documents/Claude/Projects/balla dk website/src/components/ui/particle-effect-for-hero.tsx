@@ -360,7 +360,7 @@ interface HeroContentProps {
 
 const HeroContent: React.FC<HeroContentProps> = ({ onStartScorecard, onExploreAgency }) => {
   return (
-    <div className="absolute inset-0 z-10 flex flex-col items-center justify-center overflow-y-auto px-4 py-20 pointer-events-none">
+    <div className="relative z-10 flex min-h-dvh flex-col items-center justify-center px-4 py-20 pointer-events-none">
       <div className="max-w-4xl w-full text-center space-y-8 pointer-events-auto">
         <div className="flex justify-center">
           <Image
