@@ -44,16 +44,28 @@ export function ResultScreen({ firstName, path, categoryResults, missingLetter, 
         </button>
       </div>
 
-      <h2 className="mt-4 text-2xl font-bold sm:text-3xl">
+      <h2
+        className="mt-4 text-2xl font-bold sm:text-3xl"
+        style={{ animation: "fade-up 0.4s cubic-bezier(0.16, 1, 0.3, 1) both" }}
+      >
         {firstName}, {content.headline}
       </h2>
-      <p className="mt-3 text-sm text-muted-foreground">{content.message}</p>
+      <p
+        className="mt-3 text-sm text-muted-foreground"
+        style={{ animation: "fade-up 0.4s cubic-bezier(0.16, 1, 0.3, 1) 60ms both" }}
+      >
+        {content.message}
+      </p>
 
       <ul className="mt-6 space-y-3" aria-label="Your R.I.S.E. category results">
-        {categoryResults.map((result) => {
+        {categoryResults.map((result, index) => {
           const Icon = TIER_ICON[result.tier];
           return (
-            <li key={result.category} className="rounded-xl border border-border bg-card p-4">
+            <li
+              key={result.category}
+              className="rounded-xl border border-border bg-card p-4"
+              style={{ animation: `fade-up 0.45s cubic-bezier(0.16, 1, 0.3, 1) ${120 + index * 80}ms both` }}
+            >
               <div className="flex items-center justify-between">
                 <span className="font-heading font-semibold">{result.category}</span>
                 <span className="flex items-center gap-1.5 text-sm font-medium">
@@ -64,7 +76,10 @@ export function ResultScreen({ firstName, path, categoryResults, missingLetter, 
               <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-secondary">
                 <div
                   className="h-full rounded-full bg-gold"
-                  style={{ width: `${result.normalisedScore}%` }}
+                  style={{
+                    "--bar-target": `${result.normalisedScore}%`,
+                    animation: `bar-fill 0.9s cubic-bezier(0.16, 1, 0.3, 1) ${200 + index * 120}ms both`,
+                  } as React.CSSProperties}
                 />
               </div>
             </li>

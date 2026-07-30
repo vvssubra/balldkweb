@@ -8,7 +8,7 @@ export function Footer() {
         className="pointer-events-none absolute inset-0 -z-10"
         style={{
           background:
-            "radial-gradient(circle at 20% 0%, rgba(212,175,55,0.08), transparent 55%), radial-gradient(circle at 80% 100%, rgba(212,175,55,0.06), transparent 55%)",
+            "radial-gradient(circle at 20% 0%, color-mix(in oklch, var(--gold) 8%, transparent), transparent 55%), radial-gradient(circle at 80% 100%, color-mix(in oklch, var(--gold) 6%, transparent), transparent 55%)",
         }}
       />
 

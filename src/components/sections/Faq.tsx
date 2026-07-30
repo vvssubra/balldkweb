@@ -32,16 +32,25 @@ export function Faq() {
                 >
                   {item.question}
                   <ChevronDown
-                    className={`size-4 shrink-0 transition-transform ${isOpen ? "rotate-180" : ""}`}
+                    className={`size-4 shrink-0 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
                     aria-hidden="true"
                   />
                 </button>
               </h3>
-              {isOpen ? (
-                <div id={panelId} role="region" aria-labelledby={buttonId} className="px-6 pb-4 text-sm text-muted-foreground">
-                  {item.answer}
+              <div
+                id={panelId}
+                role="region"
+                aria-labelledby={buttonId}
+                style={{
+                  display: "grid",
+                  gridTemplateRows: isOpen ? "1fr" : "0fr",
+                  transition: "grid-template-rows 0.22s cubic-bezier(0.16, 1, 0.3, 1)",
+                }}
+              >
+                <div className="overflow-hidden">
+                  <div className="px-6 pb-4 text-sm text-muted-foreground">{item.answer}</div>
                 </div>
-              ) : null}
+              </div>
             </div>
           );
         })}

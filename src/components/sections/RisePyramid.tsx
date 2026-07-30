@@ -49,7 +49,8 @@ export function RisePyramid({ onSelectPath }: RisePyramidProps) {
             ))}
           </div>
 
-          <div className={`rise-card rounded-2xl border-2 p-8 ${LEVEL_COLOR[active.key]}`}>
+          <div className={`rise-card rounded-2xl border-2 p-8 transition-[border-color,color] duration-200 ${LEVEL_COLOR[active.key]}`}>
+            <div key={active.key} style={{ animation: "panel-fade-in 0.22s cubic-bezier(0.16, 1, 0.3, 1) both" }}>
             <h3 className="font-heading text-2xl font-bold">{active.name}</h3>
             <p className="mt-1 text-sm font-medium text-muted-foreground">{active.step}</p>
 
@@ -71,6 +72,7 @@ export function RisePyramid({ onSelectPath }: RisePyramidProps) {
             >
               Take the Scorecard
             </button>
+            </div>
           </div>
         </div>
       </div>

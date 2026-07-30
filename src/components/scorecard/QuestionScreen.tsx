@@ -54,7 +54,11 @@ export function QuestionScreen({
         </p>
       </div>
 
-      <div className="mt-10 flex-1">
+      <div
+        key={questionNumber}
+        className="mt-10 flex-1"
+        style={{ animation: "fade-up 0.22s cubic-bezier(0.16, 1, 0.3, 1) both" }}
+      >
         <h2 className="text-xl font-bold sm:text-2xl">{question.text}</h2>
 
         <div className="mt-8 flex flex-col gap-3" role="radiogroup" aria-label={question.text}>

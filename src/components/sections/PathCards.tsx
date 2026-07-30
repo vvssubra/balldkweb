@@ -26,8 +26,8 @@ export function PathCards({ onSelectPath }: PathCardsProps) {
             key={card.path}
             className={
               card.path === "financial"
-                ? "rise-card flex flex-col rounded-2xl border border-black/10 border-t-2 border-t-rise-r p-8 transition-all hover:-translate-y-1 hover:shadow-md"
-                : "rise-card flex flex-col rounded-2xl border border-black/10 p-8 transition-all hover:-translate-y-1 hover:shadow-md"
+                ? "rise-card flex flex-col rounded-2xl border-t-2 border-t-rise-r p-8 transition-all hover:-translate-y-1 hover:shadow-md"
+                : "rise-card flex flex-col rounded-2xl p-8 transition-all hover:-translate-y-1 hover:shadow-md"
             }
           >
             {card.path === "career" ? (
