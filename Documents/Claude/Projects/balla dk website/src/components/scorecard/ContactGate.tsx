@@ -58,7 +58,7 @@ export function ContactGate({ path, onSubmit, onBack, onClose }: ContactGateProp
   const revealLabel = path === "financial" ? "Reveal My Financial R.I.S.E. Result" : "Reveal My Career R.I.S.E. Result";
 
   return (
-    <div className="mx-auto flex h-full max-w-lg flex-col px-4 py-10">
+    <div className="mx-auto flex h-full max-w-lg flex-col px-4 py-10" style={{ animation: "fade-up 0.28s cubic-bezier(0.16, 1, 0.3, 1) both" }}>
       <div className="-mx-2 flex items-center justify-between">
         <button type="button" onClick={onBack} className="p-2 text-sm font-medium text-muted-foreground hover:text-foreground">
           Back
@@ -83,7 +83,7 @@ export function ContactGate({ path, onSubmit, onBack, onClose }: ContactGateProp
             onChange={(e) => setValues((v) => ({ ...v, firstName: e.target.value }))}
             aria-invalid={Boolean(errors.firstName)}
             aria-describedby={errors.firstName ? "firstName-error" : undefined}
-            className="mt-1 w-full rounded-lg border border-border bg-card px-4 py-3 text-base"
+            className="mt-1 w-full rounded-lg border border-border bg-card px-4 py-3 text-base transition-colors focus:outline-none focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/30"
           />
           {errors.firstName ? (
             <p id="firstName-error" className="mt-1 text-sm text-destructive">
@@ -105,7 +105,7 @@ export function ContactGate({ path, onSubmit, onBack, onClose }: ContactGateProp
             onChange={(e) => setValues((v) => ({ ...v, email: e.target.value }))}
             aria-invalid={Boolean(errors.email)}
             aria-describedby={errors.email ? "email-error" : undefined}
-            className="mt-1 w-full rounded-lg border border-border bg-card px-4 py-3 text-base"
+            className="mt-1 w-full rounded-lg border border-border bg-card px-4 py-3 text-base transition-colors focus:outline-none focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/30"
           />
           {errors.email ? (
             <p id="email-error" className="mt-1 text-sm text-destructive">
@@ -128,7 +128,7 @@ export function ContactGate({ path, onSubmit, onBack, onClose }: ContactGateProp
             onChange={(e) => setValues((v) => ({ ...v, whatsappNumber: e.target.value }))}
             aria-invalid={Boolean(errors.whatsappNumber)}
             aria-describedby={errors.whatsappNumber ? "whatsapp-error" : undefined}
-            className="mt-1 w-full rounded-lg border border-border bg-card px-4 py-3 text-base"
+            className="mt-1 w-full rounded-lg border border-border bg-card px-4 py-3 text-base transition-colors focus:outline-none focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/30"
           />
           {errors.whatsappNumber ? (
             <p id="whatsapp-error" className="mt-1 text-sm text-destructive">
@@ -146,7 +146,7 @@ export function ContactGate({ path, onSubmit, onBack, onClose }: ContactGateProp
             type="text"
             value={values.goal}
             onChange={(e) => setValues((v) => ({ ...v, goal: e.target.value }))}
-            className="mt-1 w-full rounded-lg border border-border bg-card px-4 py-3 text-base"
+            className="mt-1 w-full rounded-lg border border-border bg-card px-4 py-3 text-base transition-colors focus:outline-none focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/30"
           />
         </div>
 
