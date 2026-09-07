@@ -42,6 +42,17 @@ interface MouseState {
   isActive: boolean;
 }
 
+interface ShootingStar {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  length: number;
+  life: number; // 0 → 1
+  decay: number;
+  gold: boolean;
+}
+
 // --- Brand Palette (Balla DK R.I.S.E.) ---
 // Primary: deep navy / near-black + white. Accent: warm premium gold.
 const COLOR_GOLD = '#D4AF37';
@@ -55,6 +66,8 @@ const MOUSE_RADIUS = 180; // Radius of mouse influence
 const RETURN_SPEED = 0.08; // How fast particles fly back to origin (spring constant)
 const DAMPING = 0.90; // Friction (velocity decay)
 const REPULSION_STRENGTH = 1.2; // Multiplier for mouse push force
+const STAR_SPAWN_CHANCE = 0.012; // Per frame; roughly one meteor every 1.5s at 60fps
+const STAR_MAX_ACTIVE = 3;
 
 // --- Helper Functions ---
 
@@ -62,13 +75,19 @@ const randomRange = (min: number, max: number) => Math.random() * (max - min) + 
 
 // --- Components ---
 
-export const AntiGravityCanvas: React.FC = () => {
+interface AntiGravityCanvasProps {
+  /** Spawn occasional meteors streaking across the field. */
+  shootingStars?: boolean;
+}
+
+export const AntiGravityCanvas: React.FC<AntiGravityCanvasProps> = ({ shootingStars = false }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Mutable state refs to avoid re-renders during animation loop
   const particlesRef = useRef<Particle[]>([]);
   const backgroundParticlesRef = useRef<BackgroundParticle[]>([]);
+  const starsRef = useRef<ShootingStar[]>([]);
   const mouseRef = useRef<MouseState>({ x: -1000, y: -1000, isActive: false });
   const frameIdRef = useRef<number>(0);
   const lastTimeRef = useRef<number>(0);
@@ -177,6 +196,68 @@ export const AntiGravityCanvas: React.FC = () => {
       ctx.fill();
     }
     ctx.globalAlpha = 1.0; // Reset alpha for foreground
+
+    // 3. Shooting Stars (optional). Enter from the top-left half, streak down-right, fade out.
+    if (shootingStars) {
+      const stars = starsRef.current;
+      const w = canvas.width / (window.devicePixelRatio || 1);
+      const h = canvas.height / (window.devicePixelRatio || 1);
+
+      if (stars.length < STAR_MAX_ACTIVE && Math.random() < STAR_SPAWN_CHANCE) {
+        const speed = randomRange(9, 15);
+        const angle = randomRange(Math.PI * 0.12, Math.PI * 0.22); // shallow diagonal
+        stars.push({
+          x: randomRange(-w * 0.1, w * 0.6),
+          y: randomRange(-40, h * 0.35),
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          length: randomRange(120, 220),
+          life: 0,
+          decay: randomRange(0.012, 0.02),
+          gold: Math.random() > 0.6,
+        });
+      }
+
+      ctx.lineCap = 'round';
+      for (let i = stars.length - 1; i >= 0; i--) {
+        const s = stars[i];
+        s.x += s.vx;
+        s.y += s.vy;
+        s.life += s.decay;
+
+        if (s.life >= 1 || s.x > w + s.length || s.y > h + s.length) {
+          stars.splice(i, 1);
+          continue;
+        }
+
+        // Bright early, fading out over the second half of life
+        const alpha = s.life < 0.5 ? 1 : 1 - (s.life - 0.5) * 2;
+        const mag = Math.sqrt(s.vx * s.vx + s.vy * s.vy);
+        const tailX = s.x - (s.vx / mag) * s.length;
+        const tailY = s.y - (s.vy / mag) * s.length;
+
+        const head = s.gold ? `rgba(212, 175, 55, ${alpha})` : `rgba(255, 255, 255, ${alpha})`;
+        const grad = ctx.createLinearGradient(tailX, tailY, s.x, s.y);
+        grad.addColorStop(0, 'rgba(255, 255, 255, 0)');
+        grad.addColorStop(1, head);
+
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 1.6;
+        ctx.beginPath();
+        ctx.moveTo(tailX, tailY);
+        ctx.lineTo(s.x, s.y);
+        ctx.stroke();
+
+        // Head glow
+        ctx.fillStyle = head;
+        ctx.shadowColor = head;
+        ctx.shadowBlur = 12;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, 1.8, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+    }
 
     // --- Main Foreground Physics ---
 
@@ -292,7 +373,7 @@ export const AntiGravityCanvas: React.FC = () => {
     }
 
     frameIdRef.current = requestAnimationFrame((t) => animateRef.current(t));
-  }, []);
+  }, [shootingStars]);
 
   useEffect(() => {
     animateRef.current = animate;
