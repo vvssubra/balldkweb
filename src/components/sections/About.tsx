@@ -1,11 +1,12 @@
 import Image from "next/image";
 import { CTA } from "@/lib/cta-styles";
+import { TiltCard } from "@/components/ui/tilt-card";
 
 export function About() {
   return (
     <section id="about" className="mx-auto max-w-6xl px-4 py-20 sm:px-6" aria-labelledby="about-heading">
       <div className="grid items-center gap-10 md:grid-cols-[minmax(0,320px)_1fr]">
-        <div className="mx-auto w-full max-w-xs overflow-hidden rounded-2xl border border-border shadow-sm">
+        <TiltCard className="mx-auto w-full max-w-xs">
           <Image
             src="/images/balla-dk-about.jpg"
             alt="Portrait of Balla DK, financial mentor and agency leader"
@@ -13,7 +14,11 @@ export function About() {
             height={800}
             className="h-full w-full object-cover"
           />
-        </div>
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy/80 to-transparent p-4">
+            <p className="font-heading text-sm font-semibold text-white">Balla DK</p>
+            <p className="text-xs text-white/70">Financial Mentor &amp; Agency Leader</p>
+          </div>
+        </TiltCard>
 
         <div>
           <p className="text-xs font-semibold uppercase tracking-widest text-gold">About Balla</p>
