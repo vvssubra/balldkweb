@@ -375,22 +375,20 @@ const HeroContent: React.FC<HeroContentProps> = ({ onStartScorecard, onExploreAg
 
         <div className="inline-block">
           <span className="py-1 px-3 border border-gold/30 rounded-full text-xs font-mono text-gold tracking-widest uppercase bg-gold/5 backdrop-blur-sm">
-            Free R.I.S.E. Scorecard
+            Financial Mentor &amp; Advisor
           </span>
         </div>
 
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tighter">
-          Build a Life.
+          Know Where You Stand.
           <br />
-          Not Just Pay Bills.
+          <span className="text-gold">Know Where to Go Next.</span>
         </h1>
 
         <p className="max-w-2xl mx-auto text-lg md:text-xl text-white/60 font-light leading-relaxed">
-          Protect your family, strengthen your income, grow your wealth and build a legacy through
-          one clear financial roadmap. One system. Two paths. A clearer next step.
+          I help you understand your financial position through the R.I.S.E. framework, then find
+          the right next step for your goals.
         </p>
-
-        <p className="text-sm text-white/40">Free assessment. Personalised result. No obligation.</p>
 
         <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
           <div className="relative rounded-full p-[2px] overflow-hidden transition-transform duration-300 hover:scale-105 active:scale-95">
@@ -403,7 +401,7 @@ const HeroContent: React.FC<HeroContentProps> = ({ onStartScorecard, onExploreAg
               onClick={onStartScorecard}
               className="group relative z-10 inline-flex items-center gap-3 px-8 py-4 bg-gold text-navy rounded-full font-bold tracking-wide transition-shadow duration-300 hover:shadow-[0_0_30px_rgba(212,175,55,0.5)]"
             >
-              <span className="relative z-10">Take the Free R.I.S.E. Scorecard</span>
+              <span className="relative z-10">Take the R.I.S.E. Scorecard</span>
               <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
@@ -415,6 +413,8 @@ const HeroContent: React.FC<HeroContentProps> = ({ onStartScorecard, onExploreAg
             Explore the Agency Opportunity
           </button>
         </div>
+
+        <p className="text-sm text-white/40">Free · 3 minutes · Personalised result</p>
       </div>
     </div>
   );

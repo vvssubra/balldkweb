@@ -1,4 +1,4 @@
-import { AlertTriangle, TrendingUp, CircleCheck } from "lucide-react";
+import { AlertTriangle, TrendingUp, CircleCheck, MessageCircle, Briefcase, ChevronRight, RotateCcw, ArrowLeft } from "lucide-react";
 import type { CategoryKey, CategoryResult, ScorecardPath, Tier } from "@/lib/scoring/types";
 import {
   CAREER_DISCLAIMER,
@@ -98,21 +98,64 @@ export function ResultScreen({ firstName, path, categoryResults, missingLetter, 
 
       <p className="mt-6 text-xs text-muted-foreground">{disclaimer}</p>
 
-      <div className="mt-8 flex flex-col gap-3">
-        <button
-          type="button"
-          onClick={handleWhatsAppClick}
-          className="w-full rounded-full bg-[#25D366] px-6 py-3.5 text-sm font-bold text-white transition-transform hover:scale-105 active:scale-95"
-        >
-          {resultCta(path, missingLetter)} on WhatsApp
-        </button>
-        <button
-          type="button"
-          onClick={onRestart}
-          className="w-full rounded-full border border-border px-6 py-3 text-sm font-medium text-foreground"
-        >
-          Retake the scorecard
-        </button>
+      <div className="mt-8">
+        <h3 className="font-heading font-semibold">Recommended next steps</h3>
+        <div className="mt-3 flex flex-col gap-3">
+          <button
+            type="button"
+            onClick={handleWhatsAppClick}
+            className="flex w-full items-center gap-4 rounded-xl border border-[#25D366]/30 bg-[#25D366]/5 p-4 text-left transition-colors hover:bg-[#25D366]/10"
+          >
+            <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#25D366]/15 text-[#25D366]">
+              <MessageCircle className="size-5" aria-hidden="true" />
+            </span>
+            <span className="flex-1">
+              <span className="block text-sm font-semibold">Want to understand your result better?</span>
+              <span className="mt-0.5 block text-xs text-muted-foreground">Talk to me directly on WhatsApp.</span>
+            </span>
+            <ChevronRight className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
+          </button>
+
+          <button
+            type="button"
+            onClick={() => {
+              onClose();
+              const el = document.getElementById("agents");
+              el?.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="flex w-full items-center gap-4 rounded-xl border border-border bg-secondary/40 p-4 text-left transition-colors hover:bg-secondary"
+          >
+            <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+              <Briefcase className="size-5" aria-hidden="true" />
+            </span>
+            <span className="flex-1">
+              <span className="block text-sm font-semibold">Interested in the Agency Opportunity?</span>
+              <span className="mt-0.5 block text-xs text-muted-foreground">Explore how you can build a career with me.</span>
+            </span>
+            <ChevronRight className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
+          </button>
+        </div>
+
+        <p className="my-4 text-center text-xs text-muted-foreground">Or</p>
+
+        <div className="flex flex-col gap-2">
+          <button
+            type="button"
+            onClick={onRestart}
+            className="flex w-full items-center justify-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-secondary"
+          >
+            <RotateCcw className="size-3.5" aria-hidden="true" />
+            Retake the scorecard
+          </button>
+          <button
+            type="button"
+            onClick={onClose}
+            className="flex w-full items-center justify-center gap-2 px-6 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
+            <ArrowLeft className="size-3.5" aria-hidden="true" />
+            Back to website
+          </button>
+        </div>
       </div>
     </div>
   );
