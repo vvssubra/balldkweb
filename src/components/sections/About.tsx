@@ -23,11 +23,11 @@ export function About({ onDiscoverStage }: AboutProps) {
             Mentor. Guide. Leader.
           </h2>
           <p className="mt-4 text-muted-foreground">
-            Balla DK is a Malaysian financial mentor and agency leader who created the R.I.S.E. Roadmap to
-            help people protect their families, strengthen their cash flow, increase their income, grow
-            their wealth and build a lasting legacy. He also mentors ambitious people building a
-            purpose-driven career through the agency model — with a focus on systems, clarity, action and
-            accountability.
+            I created the R.I.S.E. Roadmap to help you understand where you are today, strengthen
+            your income, and build a better financial future — whether that means protecting your
+            family, growing your wealth, or building a legacy that lasts. I also mentor ambitious
+            people building a purpose-driven career through the agency model, with a focus on
+            systems, clarity, action and accountability.
           </p>
           <blockquote className="mt-8 rounded-xl bg-secondary p-6 font-heading text-lg italic text-foreground">
             It is not only about earning more. It is about building the right plan, taking the right
