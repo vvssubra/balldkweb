@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { MessageCircle } from "lucide-react";
 import { HOW_IT_WORKS_STEPS, type HowItWorksStep } from "@/lib/site-content";
+import { Reveal } from "@/components/ui/reveal";
 
 interface HowItWorksProps {
   steps?: readonly HowItWorksStep[];
@@ -116,7 +117,7 @@ export function HowItWorks({ steps = HOW_IT_WORKS_STEPS, heading = "How the Scor
   return (
     <section id="how-it-works" className="bg-secondary px-4 py-20 sm:px-6" aria-labelledby="how-heading">
       <div className="mx-auto max-w-6xl">
-        <div className="mx-auto max-w-2xl text-center">
+        <Reveal variant="up" className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-semibold uppercase tracking-widest text-gold">Three Steps</p>
           <h2 id="how-heading" className="mt-2 text-3xl font-bold sm:text-4xl">
             {heading}
@@ -125,7 +126,7 @@ export function HowItWorks({ steps = HOW_IT_WORKS_STEPS, heading = "How the Scor
             The scorecard is educational and does not replace personalised financial, investment, legal or
             tax advice.
           </p>
-        </div>
+        </Reveal>
 
         <ol ref={ref} className={`steps-rail relative mt-14 grid gap-10 sm:grid-cols-3 sm:gap-6 ${inView ? "in-view" : ""}`}>
           {/* Rail behind the numbered nodes. Fills gold left→right once in view. Desktop only. */}

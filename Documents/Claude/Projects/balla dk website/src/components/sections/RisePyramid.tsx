@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { PYRAMID_LEVELS, type PyramidLevel } from "@/lib/site-content";
 import { useScorecard } from "@/components/scorecard/ScorecardProvider";
+import { Reveal, RevealGroup } from "@/components/ui/reveal";
 
 const LEVEL_COLOR: Record<PyramidLevel["key"], string> = {
   R: "border-rise-r text-rise-r",
@@ -27,16 +28,16 @@ export function RisePyramid({
   return (
     <section id="roadmap" className="bg-secondary px-4 py-20 sm:px-6" aria-labelledby="pyramid-heading">
       <div className="mx-auto max-w-6xl">
-        <div className="mx-auto max-w-2xl text-center">
+        <Reveal variant="up" className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-semibold uppercase tracking-widest text-gold">The R.I.S.E. Roadmap</p>
           <h2 id="pyramid-heading" className="mt-2 text-3xl font-bold sm:text-4xl">
             {heading}
           </h2>
           <p className="mt-4 text-muted-foreground">{intro}</p>
-        </div>
+        </Reveal>
 
         <div className="mt-12 grid gap-8 lg:grid-cols-[1fr_1.2fr]">
-          <div className="flex flex-col gap-3" role="tablist" aria-label="R.I.S.E. stages">
+          <RevealGroup variant="left" stagger={90} className="flex flex-col gap-3" role="tablist" aria-label="R.I.S.E. stages">
             {[...PYRAMID_LEVELS].reverse().map((level) => (
               <button
                 key={level.key}
@@ -52,9 +53,9 @@ export function RisePyramid({
                 <span className="ml-2 text-sm text-muted-foreground">{level.step}</span>
               </button>
             ))}
-          </div>
+          </RevealGroup>
 
-          <div className={`rise-card rounded-2xl border-2 p-8 transition-[border-color,color] duration-200 ${LEVEL_COLOR[active.key]}`}>
+          <Reveal variant="right" delay={200} className={`rise-card rounded-2xl border-2 p-8 transition-[border-color,color] duration-200 ${LEVEL_COLOR[active.key]}`}>
             <div key={active.key} style={{ animation: "panel-fade-in 0.22s cubic-bezier(0.16, 1, 0.3, 1) both" }}>
               <h3 className="font-heading text-2xl font-bold">{active.name}</h3>
               <p className="mt-1 text-sm font-medium text-muted-foreground">{active.step}</p>
@@ -78,7 +79,7 @@ export function RisePyramid({
                 Find My Stage
               </button>
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

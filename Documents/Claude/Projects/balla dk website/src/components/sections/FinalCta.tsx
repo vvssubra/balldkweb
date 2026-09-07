@@ -6,6 +6,7 @@ import type { ScorecardPath } from "@/lib/scoring/types";
 import { CTA, CTA_RESPONSIVE } from "@/lib/cta-styles";
 import { siteWhatsAppLink, type WhatsAppOpener } from "@/lib/whatsapp";
 import { useScorecard } from "@/components/scorecard/ScorecardProvider";
+import { RevealGroup } from "@/components/ui/reveal";
 
 interface FinalCtaProps {
   heading?: string;
@@ -37,7 +38,7 @@ export function FinalCta({
         className="object-cover object-top opacity-25"
         aria-hidden="true"
       />
-      <div className="relative mx-auto max-w-2xl text-center">
+      <RevealGroup variant="up" stagger={140} className="relative mx-auto max-w-2xl text-center">
         <h2 id="final-heading" className="text-3xl font-bold sm:text-4xl">
           {heading}
         </h2>
@@ -60,7 +61,7 @@ export function FinalCta({
             Talk to Balla
           </a>
         </div>
-      </div>
+      </RevealGroup>
     </section>
   );
 }

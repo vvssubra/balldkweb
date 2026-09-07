@@ -3,6 +3,7 @@
 import type { ScorecardPath } from "@/lib/scoring/types";
 import { CTA, CTA_RESPONSIVE } from "@/lib/cta-styles";
 import { useScorecard } from "@/components/scorecard/ScorecardProvider";
+import { Reveal, RevealGroup } from "@/components/ui/reveal";
 
 const BENEFITS = [
   "Your personalised R.I.S.E. score across all four stages",
@@ -25,6 +26,7 @@ export function GatedCta({ path, heading = "Discover Your Current R.I.S.E. Stage
   return (
     <section id="scorecard" className="bg-navy px-4 py-20 text-white sm:px-6" aria-labelledby="gated-heading">
       <div className="mx-auto max-w-4xl text-center">
+        <Reveal variant="scale">
         <p className="text-xs font-semibold uppercase tracking-widest text-gold">Free R.I.S.E. Scorecard</p>
         <h2 id="gated-heading" className="mt-2 text-3xl font-bold sm:text-4xl">
           {heading}
@@ -32,17 +34,18 @@ export function GatedCta({ path, heading = "Discover Your Current R.I.S.E. Stage
         <p className="mx-auto mt-4 max-w-xl text-white/70">
           Twelve questions. Three minutes. Your result appears on screen immediately. Here is what you get:
         </p>
+        </Reveal>
 
-        <ul className="mx-auto mt-8 max-w-md space-y-3 text-left text-sm text-white/80">
+        <RevealGroup as="ul" variant="left" stagger={100} delay={150} className="mx-auto mt-8 max-w-md space-y-3 text-left text-sm text-white/80">
           {BENEFITS.map((benefit) => (
             <li key={benefit} className="flex items-start gap-2">
               <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-gold" aria-hidden="true" />
               {benefit}
             </li>
           ))}
-        </ul>
+        </RevealGroup>
 
-        <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <RevealGroup variant="scale" stagger={120} delay={200} className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
           {showFinancial ? (
             <button type="button" onClick={() => open("financial")} className={`${CTA.gold} ${CTA_RESPONSIVE}`}>
               Start My Financial Health Scorecard
@@ -57,12 +60,12 @@ export function GatedCta({ path, heading = "Discover Your Current R.I.S.E. Stage
               Start My Career Growth Scorecard
             </button>
           ) : null}
-        </div>
+        </RevealGroup>
 
-        <p className="mt-6 text-xs text-white/50">
+        <Reveal as="p" variant="fade" delay={500} className="mt-6 text-xs text-white/50">
           Your information is kept private and used only to provide your result and relevant follow-up.
           You can unsubscribe at any time.
-        </p>
+        </Reveal>
       </div>
     </section>
   );
