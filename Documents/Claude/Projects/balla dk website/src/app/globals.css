@@ -150,6 +150,51 @@
     border: 1px solid var(--border);
     box-shadow: 0 1px 2px rgba(10, 14, 26, 0.04);
   }
+
+  /*
+   * Cursor spotlight. --mx/--my are written by the parent grid's pointer handler,
+   * --spot is the card's accent colour. Two layers: a soft fill inside the card and
+   * a ring that only shows through the 2px border area, so the border itself lights up.
+   */
+  .spotlight-card {
+    --mx: 50%;
+    --my: 50%;
+    overflow: hidden;
+  }
+  .spotlight-card::before,
+  .spotlight-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .spotlight-card::before {
+    background: radial-gradient(
+      320px circle at var(--mx) var(--my),
+      color-mix(in oklch, var(--spot) 18%, transparent),
+      transparent 60%
+    );
+  }
+  .spotlight-card::after {
+    inset: -2px;
+    padding: 2px;
+    background: radial-gradient(
+      260px circle at calc(var(--mx) + 2px) calc(var(--my) + 2px),
+      var(--spot),
+      transparent 70%
+    );
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+  }
+  .group\/grid:hover .spotlight-card::before,
+  .group\/grid:hover .spotlight-card::after {
+    opacity: 1;
+  }
 }
 
 @layer utilities {
@@ -162,6 +207,18 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+@keyframes aurora-drift {
+  0%   { transform: translate3d(-10%, -6%, 0) rotate(0deg) scale(1); }
+  50%  { transform: translate3d(8%, 6%, 0) rotate(12deg) scale(1.15); }
+  100% { transform: translate3d(-10%, -6%, 0) rotate(0deg) scale(1); }
+}
+
+@keyframes aurora-drift-alt {
+  0%   { transform: translate3d(8%, 4%, 0) rotate(0deg) scale(1.1); }
+  50%  { transform: translate3d(-6%, -8%, 0) rotate(-10deg) scale(0.95); }
+  100% { transform: translate3d(8%, 4%, 0) rotate(0deg) scale(1.1); }
 }
 
 @keyframes bar-fill {
