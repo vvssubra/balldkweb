@@ -4,6 +4,7 @@ import { RISE_FOR_AGENTS } from "@/lib/content/agents-content";
 import type { CategoryKey } from "@/lib/scoring/types";
 import { CTA } from "@/lib/cta-styles";
 import { useScorecard } from "@/components/scorecard/ScorecardProvider";
+import { RevealGroup } from "@/components/ui/reveal";
 
 const LETTER_STYLE: Record<CategoryKey, string> = {
   R: "bg-rise-r/10 text-rise-r",
@@ -18,7 +19,7 @@ export function RiseForAgents() {
   return (
     <section id="rise-for-agents" className="mx-auto max-w-6xl px-4 py-20 sm:px-6" aria-labelledby="rfa-heading">
       <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-center">
-        <div>
+        <RevealGroup variant="left" stagger={100}>
           <p className="text-xs font-semibold uppercase tracking-widest text-gold">R.I.S.E. for Agents</p>
           <h2 id="rfa-heading" className="mt-2 text-3xl font-bold sm:text-4xl">
             {RISE_FOR_AGENTS.headline}
@@ -28,9 +29,9 @@ export function RiseForAgents() {
             Take the Agency R.I.S.E. Assessment
           </button>
           <p className="mt-3 text-xs text-muted-foreground">Free. Three minutes. Result on screen immediately.</p>
-        </div>
+        </RevealGroup>
 
-        <ul className="grid gap-4 sm:grid-cols-2">
+        <RevealGroup as="ul" variant="scale" stagger={110} delay={150} className="grid gap-4 sm:grid-cols-2">
           {RISE_FOR_AGENTS.categories.map((category) => (
             <li key={category.key} className="rise-card rounded-2xl p-5">
               <span className={`inline-flex size-9 items-center justify-center rounded-full font-heading text-lg font-bold ${LETTER_STYLE[category.key]}`}>
@@ -40,7 +41,7 @@ export function RiseForAgents() {
               <p className="mt-1 text-sm text-muted-foreground">{category.description}</p>
             </li>
           ))}
-        </ul>
+        </RevealGroup>
       </div>
     </section>
   );

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
+import { Reveal, RevealGroup } from "@/components/ui/reveal";
 
 interface SubpageHeroProps {
   eyebrow: string;
@@ -25,7 +26,7 @@ export function SubpageHero({ eyebrow, headline, subheadline, note, imageSrc, im
         }}
       />
       <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.2fr_1fr]">
-        <div>
+        <RevealGroup variant="up" stagger={120} threshold={0.05}>
           <span className="inline-block rounded-full border border-gold/30 bg-gold/5 px-3 py-1 font-mono text-xs uppercase tracking-widest text-gold">
             {eyebrow}
           </span>
@@ -33,8 +34,13 @@ export function SubpageHero({ eyebrow, headline, subheadline, note, imageSrc, im
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/70">{subheadline}</p>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">{actions}</div>
           <p className="mt-6 text-sm text-white/40">{note}</p>
-        </div>
-        <div className="mx-auto w-full max-w-sm overflow-hidden rounded-3xl border border-white/10 shadow-2xl lg:max-w-none">
+        </RevealGroup>
+        <Reveal
+          variant="right"
+          delay={250}
+          threshold={0.05}
+          className="mx-auto w-full max-w-sm overflow-hidden rounded-3xl border border-white/10 shadow-2xl lg:max-w-none"
+        >
           <Image
             src={imageSrc}
             alt={imageAlt}
@@ -43,7 +49,7 @@ export function SubpageHero({ eyebrow, headline, subheadline, note, imageSrc, im
             priority
             className="h-full w-full object-cover object-top"
           />
-        </div>
+        </Reveal>
       </div>
     </section>
   );

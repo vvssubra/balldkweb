@@ -6,6 +6,7 @@ import { FAQ_ITEMS, type FaqItem } from "@/lib/site-content";
 import { CTA } from "@/lib/cta-styles";
 import { siteWhatsAppLink } from "@/lib/whatsapp";
 import { WhatsAppIcon } from "@/components/layout/FloatingWhatsApp";
+import { Reveal, RevealGroup } from "@/components/ui/reveal";
 
 interface FaqProps {
   items?: readonly FaqItem[];
@@ -17,11 +18,11 @@ export function Faq({ items = FAQ_ITEMS, heading = "Frequently Asked Questions" 
 
   return (
     <section id="faq" className="mx-auto max-w-3xl px-4 py-20 sm:px-6" aria-labelledby="faq-heading">
-      <h2 id="faq-heading" className="text-center text-3xl font-bold sm:text-4xl">
+      <Reveal as="h2" variant="up" id="faq-heading" className="text-center text-3xl font-bold sm:text-4xl">
         {heading}
-      </h2>
+      </Reveal>
 
-      <div className="rise-card mt-10 divide-y divide-border/60 rounded-2xl">
+      <RevealGroup variant="fade" stagger={60} delay={100} threshold={0.05} className="rise-card mt-10 divide-y divide-border/60 rounded-2xl">
         {items.map((item, index) => {
           const isOpen = openIndex === index;
           const panelId = `faq-panel-${index}`;
@@ -62,9 +63,9 @@ export function Faq({ items = FAQ_ITEMS, heading = "Frequently Asked Questions" 
             </div>
           );
         })}
-      </div>
+      </RevealGroup>
 
-      <div className="mt-10 text-center">
+      <Reveal variant="scale" className="mt-10 text-center">
         <p className="font-heading text-lg font-semibold">Still have a question?</p>
         <p className="mt-1 text-sm text-muted-foreground">Ask me directly. I read and reply to these myself.</p>
         <a
@@ -76,7 +77,7 @@ export function Faq({ items = FAQ_ITEMS, heading = "Frequently Asked Questions" 
           <WhatsAppIcon className="size-4" />
           Ask on WhatsApp
         </a>
-      </div>
+      </Reveal>
     </section>
   );
 }

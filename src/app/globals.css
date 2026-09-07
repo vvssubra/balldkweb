@@ -307,3 +307,106 @@
     scroll-behavior: auto !important;
   }
 }
+/* ---------------------------------------------------------------------------
+   Scroll reveal. Driven by <Reveal> / <RevealGroup> (components/ui/reveal.tsx).
+   Hidden until data-visible lands, then a keyframe animation runs. Animations
+   (not transitions) so utility transition-* classes on the same element keep
+   working, and Tailwind's translate/scale hover utilities never collide.
+   --------------------------------------------------------------------------- */
+[data-reveal],
+[data-reveal-group] > * {
+  --reveal-base: 0ms;
+  --reveal-stagger: 90ms;
+  --reveal-duration: 800ms;
+  --reveal-delay: var(--reveal-base);
+  --reveal-anim: reveal-up;
+  opacity: 0;
+}
+
+[data-reveal="down"],  [data-reveal-group="down"]  > * { --reveal-anim: reveal-down; }
+[data-reveal="left"],  [data-reveal-group="left"]  > * { --reveal-anim: reveal-left; }
+[data-reveal="right"], [data-reveal-group="right"] > * { --reveal-anim: reveal-right; }
+[data-reveal="scale"], [data-reveal-group="scale"] > * { --reveal-anim: reveal-scale; }
+[data-reveal="blur"],  [data-reveal-group="blur"]  > * { --reveal-anim: reveal-blur; }
+[data-reveal="fade"],  [data-reveal-group="fade"]  > * { --reveal-anim: reveal-fade; }
+[data-reveal="flip"],  [data-reveal-group="flip"]  > * { --reveal-anim: reveal-flip; }
+[data-reveal-group="sides"] > :nth-child(odd)  { --reveal-anim: reveal-left; }
+[data-reveal-group="sides"] > :nth-child(even) { --reveal-anim: reveal-right; }
+
+/* Stagger: each child waits one more step than the last. Caps at 12. */
+[data-reveal-group] > :nth-child(2)  { --reveal-delay: calc(var(--reveal-base) + var(--reveal-stagger) * 1); }
+[data-reveal-group] > :nth-child(3)  { --reveal-delay: calc(var(--reveal-base) + var(--reveal-stagger) * 2); }
+[data-reveal-group] > :nth-child(4)  { --reveal-delay: calc(var(--reveal-base) + var(--reveal-stagger) * 3); }
+[data-reveal-group] > :nth-child(5)  { --reveal-delay: calc(var(--reveal-base) + var(--reveal-stagger) * 4); }
+[data-reveal-group] > :nth-child(6)  { --reveal-delay: calc(var(--reveal-base) + var(--reveal-stagger) * 5); }
+[data-reveal-group] > :nth-child(7)  { --reveal-delay: calc(var(--reveal-base) + var(--reveal-stagger) * 6); }
+[data-reveal-group] > :nth-child(8)  { --reveal-delay: calc(var(--reveal-base) + var(--reveal-stagger) * 7); }
+[data-reveal-group] > :nth-child(9)  { --reveal-delay: calc(var(--reveal-base) + var(--reveal-stagger) * 8); }
+[data-reveal-group] > :nth-child(10) { --reveal-delay: calc(var(--reveal-base) + var(--reveal-stagger) * 9); }
+[data-reveal-group] > :nth-child(11) { --reveal-delay: calc(var(--reveal-base) + var(--reveal-stagger) * 10); }
+[data-reveal-group] > :nth-child(n + 12) { --reveal-delay: calc(var(--reveal-base) + var(--reveal-stagger) * 11); }
+
+[data-reveal][data-visible],
+[data-reveal-group][data-visible] > * {
+  animation: var(--reveal-anim) var(--reveal-duration) cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay) both;
+}
+
+/* Group vars are set on the group; children read them through inheritance. */
+[data-reveal-group] {
+  --reveal-base: 0ms;
+  --reveal-stagger: 90ms;
+  --reveal-duration: 800ms;
+}
+[data-reveal-group] > * {
+  --reveal-base: inherit;
+  --reveal-stagger: inherit;
+  --reveal-duration: inherit;
+}
+
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes reveal-down {
+  from { opacity: 0; transform: translateY(-28px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes reveal-left {
+  from { opacity: 0; transform: translateX(-36px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes reveal-right {
+  from { opacity: 0; transform: translateX(36px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes reveal-scale {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes reveal-blur {
+  from { opacity: 0; filter: blur(10px); transform: translateY(14px); }
+  to   { opacity: 1; filter: blur(0); transform: none; }
+}
+@keyframes reveal-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes reveal-flip {
+  from { opacity: 0; transform: perspective(900px) rotateX(-14deg) translateY(24px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Reduced motion, or no JS: content is simply visible. */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal],
+  [data-reveal-group] > * {
+    opacity: 1;
+    animation: none !important;
+  }
+}
+@media (scripting: none) {
+  [data-reveal],
+  [data-reveal-group] > * {
+    opacity: 1;
+  }
+}

@@ -5,6 +5,7 @@ import type { CategoryKey } from "@/lib/scoring/types";
 import { CTA, CTA_RESPONSIVE } from "@/lib/cta-styles";
 import { useScorecard } from "@/components/scorecard/ScorecardProvider";
 import { AntiGravityCanvas } from "@/components/ui/particle-effect-for-hero";
+import { Reveal, RevealGroup } from "@/components/ui/reveal";
 
 /** Per-stage tint on dark glass: 2px border, corner glow, stage badge. */
 const STAGE_STYLE: Record<CategoryKey, { border: string; glow: string; badge: string; name: string }> = {
@@ -26,7 +27,7 @@ export function ProblemCards() {
 
       {/* Content sits above the canvas but lets pointer events through to it outside the cards. */}
       <div className="pointer-events-none relative z-10 mx-auto max-w-6xl">
-        <div className="mx-auto max-w-2xl text-center">
+        <Reveal variant="blur" className="mx-auto max-w-2xl text-center">
           <h2 id="problem-heading" className="text-3xl font-bold sm:text-4xl">
             What Is Missing From Your Financial Life?
           </h2>
@@ -34,9 +35,9 @@ export function ProblemCards() {
             Most people I meet do not have a money problem alone. They have a missing-system problem.
             See if any of these sound familiar.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <RevealGroup variant="scale" stagger={100} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {PROBLEM_CARDS.map((card, index) => {
             const style = STAGE_STYLE[card.stage];
             const isLead = index === 0;
@@ -67,16 +68,16 @@ export function ProblemCards() {
               </article>
             );
           })}
-        </div>
+        </RevealGroup>
 
-        <div className="mt-10 text-center">
+        <Reveal variant="up" delay={200} className="mt-10 text-center">
           <p className="text-white/60">
             You do not need to solve all of this today. You need to know which one to fix first.
           </p>
           <button type="button" onClick={() => open()} className={`pointer-events-auto ${CTA.gold} ${CTA_RESPONSIVE} mt-4`}>
             Find My Missing R.I.S.E. Step
           </button>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { CAREER_STAGES, type CareerStage } from "@/lib/content/agents-content";
 import type { CategoryKey } from "@/lib/scoring/types";
 import { CTA } from "@/lib/cta-styles";
+import { Reveal, RevealGroup } from "@/components/ui/reveal";
 
 const STAGE_COLOR: Record<CategoryKey, string> = {
   R: "border-rise-r text-rise-r",
@@ -25,7 +26,7 @@ export function CareerPath() {
   return (
     <section id="career-path" className="bg-navy px-4 py-20 text-white sm:px-6" aria-labelledby="career-heading">
       <div className="mx-auto max-w-6xl">
-        <div className="mx-auto max-w-2xl text-center">
+        <Reveal variant="up" className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-semibold uppercase tracking-widest text-gold">Career and Growth Path</p>
           <h2 id="career-heading" className="mt-2 text-3xl font-bold sm:text-4xl">
             Start. Develop. Grow. Lead.
@@ -34,9 +35,9 @@ export function CareerPath() {
             Your career follows the same R.I.S.E. sequence I use with clients. Select a stage to see what
             you focus on, what you learn and how I support you there.
           </p>
-        </div>
+        </Reveal>
 
-        <ol className="mt-12 grid gap-3 sm:grid-cols-4" role="tablist" aria-label="Career stages">
+        <RevealGroup as="ol" variant="up" stagger={100} className="mt-12 grid gap-3 sm:grid-cols-4" role="tablist" aria-label="Career stages">
           {CAREER_STAGES.map((stage, index) => {
             const isActive = stage.key === activeKey;
             return (
@@ -57,11 +58,12 @@ export function CareerPath() {
               </li>
             );
           })}
-        </ol>
+        </RevealGroup>
 
+        <Reveal variant="blur" delay={350} className="mt-6">
         <div
           key={active.key}
-          className={`mt-6 rounded-2xl border-2 bg-white/5 p-8 ${STAGE_COLOR[active.key]}`}
+          className={`rounded-2xl border-2 bg-white/5 p-8 ${STAGE_COLOR[active.key]}`}
           style={{ animation: "panel-fade-in 0.22s cubic-bezier(0.16, 1, 0.3, 1) both" }}
         >
           <h3 className="font-heading text-2xl font-bold">
@@ -77,12 +79,13 @@ export function CareerPath() {
             ))}
           </dl>
         </div>
+        </Reveal>
 
-        <div className="mt-10 text-center">
+        <Reveal variant="fade" delay={150} className="mt-10 text-center">
           <a href="#rise-for-agents" className={CTA.gold}>
             Explore Your Growth Potential
           </a>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

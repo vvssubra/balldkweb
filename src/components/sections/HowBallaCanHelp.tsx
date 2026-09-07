@@ -5,6 +5,7 @@ import { HELP_AREAS } from "@/lib/content/help-content";
 import type { CategoryKey } from "@/lib/scoring/types";
 import { CTA } from "@/lib/cta-styles";
 import { AntiGravityCanvas } from "@/components/ui/particle-effect-for-hero";
+import { Reveal, RevealGroup } from "@/components/ui/reveal";
 
 const STAGE: Record<CategoryKey, { name: string; badge: string; spot: string }> = {
   R: { name: "Restore", badge: "bg-rise-r/20 text-rise-r", spot: "var(--rise-r)" },
@@ -44,7 +45,7 @@ export function HowBallaCanHelp({ ctaHref = "#scorecard", ctaLabel = "Know Your 
 
       {/* Empty space lets the pointer reach the canvas; cards and CTA re-enable events. */}
       <div className="pointer-events-none relative z-10 mx-auto max-w-6xl">
-        <div className="mx-auto max-w-2xl text-center">
+        <Reveal variant="blur" className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-semibold uppercase tracking-widest text-gold">How I Can Help</p>
           <h2 id="help-heading" className="mt-2 text-3xl font-bold sm:text-4xl">
             This Is What I Need. This Is How Balla Helps.
@@ -53,9 +54,16 @@ export function HowBallaCanHelp({ ctaHref = "#scorecard", ctaLabel = "Know Your 
             I do not start with products. I start with the stage you are at and the problem in front of you.
             These are the five areas I work on with clients, and what we aim for in each.
           </p>
-        </div>
+        </Reveal>
 
-        <div ref={gridRef} onPointerMove={handleMove} className="group/grid pointer-events-auto mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <RevealGroup
+          ref={gridRef}
+          variant="up"
+          stagger={90}
+          threshold={0.1}
+          onPointerMove={handleMove}
+          className="group/grid pointer-events-auto mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3"
+        >
           {HELP_AREAS.map((area) => {
             const stage = STAGE[area.stage];
             return (
@@ -97,7 +105,7 @@ export function HowBallaCanHelp({ ctaHref = "#scorecard", ctaLabel = "Know Your 
               {ctaLabel}
             </a>
           </div>
-        </div>
+        </RevealGroup>
       </div>
     </section>
   );

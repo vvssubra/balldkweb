@@ -1,12 +1,13 @@
 import Image from "next/image";
 import { WHY_PILLARS } from "@/lib/content/agents-content";
 import { CTA } from "@/lib/cta-styles";
+import { Reveal, RevealGroup } from "@/components/ui/reveal";
 
 export function WhyBalla() {
   return (
     <section id="why" className="mx-auto max-w-6xl px-4 py-20 sm:px-6" aria-labelledby="why-heading">
       <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.3fr]">
-        <div className="mx-auto w-full max-w-xs overflow-hidden rounded-2xl border border-border shadow-sm lg:max-w-none">
+        <Reveal variant="scale" className="mx-auto w-full max-w-xs overflow-hidden rounded-2xl border border-border shadow-sm lg:max-w-none">
           <Image
             src="/images/balla-dk-about.jpg"
             alt="Portrait of Balla DK"
@@ -14,9 +15,9 @@ export function WhyBalla() {
             height={800}
             className="h-full w-full object-cover"
           />
-        </div>
+        </Reveal>
 
-        <div>
+        <RevealGroup variant="right" stagger={100} delay={100}>
           <p className="text-xs font-semibold uppercase tracking-widest text-gold">Why Balla</p>
           <h2 id="why-heading" className="mt-2 text-3xl font-bold sm:text-4xl">
             Why Build Your Career Here?
@@ -26,19 +27,19 @@ export function WhyBalla() {
             get with me, and I hold myself to it.
           </p>
 
-          <dl className="mt-8 space-y-6">
+          <RevealGroup as="dl" variant="left" stagger={130} className="mt-8 space-y-6">
             {WHY_PILLARS.map((pillar) => (
               <div key={pillar.title} className="border-l-2 border-gold pl-5">
                 <dt className="font-heading text-lg font-semibold">{pillar.title}</dt>
                 <dd className="mt-1 text-sm text-muted-foreground">{pillar.body}</dd>
               </div>
             ))}
-          </dl>
+          </RevealGroup>
 
           <a href="#career-path" className={`${CTA.primary} mt-8`}>
             Discover the Support System
           </a>
-        </div>
+        </RevealGroup>
       </div>
     </section>
   );

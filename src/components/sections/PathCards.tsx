@@ -8,6 +8,7 @@ import { PATH_CARDS, type PathCard } from "@/lib/site-content";
 import { CTA } from "@/lib/cta-styles";
 import { siteWhatsAppLink } from "@/lib/whatsapp";
 import { useScorecard } from "@/components/scorecard/ScorecardProvider";
+import { Reveal, RevealGroup } from "@/components/ui/reveal";
 
 /** Visual treatment per path: header band gradient, accent text, big ghost numeral. */
 const PATH_THEME: Record<PathCard["path"], { band: string; accent: string; index: string; who: string }> = {
@@ -49,7 +50,7 @@ export function PathCards() {
   return (
     <section id="paths" className="relative overflow-hidden bg-background px-4 py-20 sm:px-6" aria-labelledby="paths-heading">
       <div className="mx-auto max-w-6xl">
-        <div className="mx-auto max-w-2xl text-center">
+        <Reveal variant="up" className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-semibold uppercase tracking-widest text-gold">Choose Your Path</p>
           <h2 id="paths-heading" className="mt-2 text-3xl font-bold sm:text-4xl">
             Two Paths. One Purpose.
@@ -58,7 +59,7 @@ export function PathCards() {
             I work with two kinds of people. Pick the one that sounds like you and I will show you what the
             journey looks like.
           </p>
-        </div>
+        </Reveal>
 
         <div ref={forkRef} className={`path-fork mt-8 ${inView ? "in-view" : ""}`}>
           {/* Fork connector. Single stem from the heading splits to each card. Desktop only. */}
@@ -99,7 +100,7 @@ export function PathCards() {
             <circle cx="500" cy="30" r="5" fill="var(--gold)" />
           </svg>
 
-          <div className="flex flex-col gap-6 md:flex-row md:items-stretch">
+          <RevealGroup variant="sides" stagger={140} threshold={0.1} className="flex flex-col gap-6 md:flex-row md:items-stretch">
             {PATH_CARDS.map((card) => {
               const theme = PATH_THEME[card.path];
               return (
@@ -159,10 +160,10 @@ export function PathCards() {
                 </article>
               );
             })}
-          </div>
+          </RevealGroup>
         </div>
 
-        <p className="mt-10 text-center text-sm text-muted-foreground">
+        <Reveal as="p" variant="fade" delay={200} className="mt-10 text-center text-sm text-muted-foreground">
           Not sure which one you are?{" "}
           <a
             href={siteWhatsAppLink("notSure")}
@@ -172,7 +173,7 @@ export function PathCards() {
           >
             Message me and I will point you the right way.
           </a>
-        </p>
+        </Reveal>
       </div>
     </section>
   );

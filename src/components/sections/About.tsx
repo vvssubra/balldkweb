@@ -1,11 +1,13 @@
 import Image from "next/image";
 import { CTA } from "@/lib/cta-styles";
 import { TiltCard } from "@/components/ui/tilt-card";
+import { Reveal, RevealGroup } from "@/components/ui/reveal";
 
 export function About() {
   return (
     <section id="about" className="mx-auto max-w-6xl px-4 py-20 sm:px-6" aria-labelledby="about-heading">
       <div className="grid items-center gap-10 md:grid-cols-[minmax(0,320px)_1fr]">
+        <Reveal variant="left" className="w-full">
         <TiltCard className="mx-auto w-full max-w-xs">
           <Image
             src="/images/balla-dk-about.jpg"
@@ -19,8 +21,9 @@ export function About() {
             <p className="text-xs text-white/70">Financial Mentor &amp; Agency Leader</p>
           </div>
         </TiltCard>
+        </Reveal>
 
-        <div>
+        <RevealGroup variant="right" stagger={110} delay={120}>
           <p className="text-xs font-semibold uppercase tracking-widest text-gold">About Balla</p>
           <h2 id="about-heading" className="mt-2 text-3xl font-bold sm:text-4xl">
             Mentor. Guide. Leader.
@@ -42,7 +45,7 @@ export function About() {
           <a href="#how-balla-helps" className={`${CTA.primary} mt-8`}>
             See How I Can Help
           </a>
-        </div>
+        </RevealGroup>
       </div>
     </section>
   );
