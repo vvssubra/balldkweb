@@ -4,7 +4,7 @@ import { useRef, type CSSProperties, type PointerEvent } from "react";
 import { HELP_AREAS } from "@/lib/content/help-content";
 import type { CategoryKey } from "@/lib/scoring/types";
 import { CTA } from "@/lib/cta-styles";
-import { AuroraBackground } from "@/components/ui/aurora-background";
+import { AntiGravityCanvas } from "@/components/ui/particle-effect-for-hero";
 
 const STAGE: Record<CategoryKey, { name: string; badge: string; spot: string }> = {
   R: { name: "Restore", badge: "bg-rise-r/20 text-rise-r", spot: "var(--rise-r)" },
@@ -39,10 +39,11 @@ export function HowBallaCanHelp({ ctaHref = "#scorecard", ctaLabel = "Know Your 
   }
 
   return (
-    <section id="how-balla-helps" className="relative overflow-hidden px-4 py-20 text-white sm:px-6" aria-labelledby="help-heading">
-      <AuroraBackground />
+    <section id="how-balla-helps" className="relative overflow-hidden bg-navy px-4 py-20 text-white sm:px-6" aria-labelledby="help-heading">
+      <AntiGravityCanvas shootingStars />
 
-      <div className="relative mx-auto max-w-6xl">
+      {/* Empty space lets the pointer reach the canvas; cards and CTA re-enable events. */}
+      <div className="pointer-events-none relative z-10 mx-auto max-w-6xl">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-semibold uppercase tracking-widest text-gold">How I Can Help</p>
           <h2 id="help-heading" className="mt-2 text-3xl font-bold sm:text-4xl">
@@ -54,7 +55,7 @@ export function HowBallaCanHelp({ ctaHref = "#scorecard", ctaLabel = "Know Your 
           </p>
         </div>
 
-        <div ref={gridRef} onPointerMove={handleMove} className="group/grid mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div ref={gridRef} onPointerMove={handleMove} className="group/grid pointer-events-auto mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {HELP_AREAS.map((area) => {
             const stage = STAGE[area.stage];
             return (
@@ -62,7 +63,7 @@ export function HowBallaCanHelp({ ctaHref = "#scorecard", ctaLabel = "Know Your 
                 key={area.id}
                 data-spot
                 style={{ "--spot": stage.spot } as CSSProperties}
-                className="spotlight-card relative flex flex-col rounded-2xl border-2 border-white/10 bg-navy/60 p-6 backdrop-blur-sm transition-colors duration-300"
+                className="spotlight-card pointer-events-auto relative flex flex-col rounded-2xl border-2 border-white/10 bg-navy/60 p-6 backdrop-blur-sm transition-colors duration-300"
               >
                 <div className="relative">
                   <div className="flex items-center justify-between gap-3">
@@ -86,7 +87,7 @@ export function HowBallaCanHelp({ ctaHref = "#scorecard", ctaLabel = "Know Your 
             );
           })}
 
-          <div className="flex flex-col justify-center rounded-2xl border-2 border-dashed border-gold/50 bg-gold/5 p-6 text-sm backdrop-blur-sm">
+          <div className="pointer-events-auto flex flex-col justify-center rounded-2xl border-2 border-dashed border-gold/50 bg-gold/5 p-6 text-sm backdrop-blur-sm">
             <p className="font-heading text-lg font-semibold">Not sure which of these is you?</p>
             <p className="mt-2 text-white/60">
               That is what the scorecard is for. Three minutes, and you will know which stage to work on

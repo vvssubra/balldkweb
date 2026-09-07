@@ -251,18 +251,6 @@
   }
 }
 
-@keyframes aurora-drift {
-  0%   { transform: translate3d(-10%, -6%, 0) rotate(0deg) scale(1); }
-  50%  { transform: translate3d(8%, 6%, 0) rotate(12deg) scale(1.15); }
-  100% { transform: translate3d(-10%, -6%, 0) rotate(0deg) scale(1); }
-}
-
-@keyframes aurora-drift-alt {
-  0%   { transform: translate3d(8%, 4%, 0) rotate(0deg) scale(1.1); }
-  50%  { transform: translate3d(-6%, -8%, 0) rotate(-10deg) scale(0.95); }
-  100% { transform: translate3d(8%, 4%, 0) rotate(0deg) scale(1.1); }
-}
-
 @keyframes bar-fill {
   from { width: 0% }
   to { width: var(--bar-target) }
