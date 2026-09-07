@@ -195,6 +195,48 @@
   .group\/grid:hover .spotlight-card::after {
     opacity: 1;
   }
+
+  /* Two Paths fork. Cards fade up once the section is in view; on desktop, hovering one
+     path widens it and recedes the other. The connector path draws itself in. */
+  .path-fork .path-card {
+    flex: 1 1 0%;
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      flex-grow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+      filter 0.5s ease,
+      box-shadow 0.5s ease;
+  }
+  .path-fork.in-view .path-card {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .path-fork.in-view .path-card:nth-child(2) {
+    transition-delay: 0.12s;
+  }
+  @media (min-width: 768px) and (hover: hover) {
+    .path-fork.in-view:hover .path-card:not(:hover) {
+      opacity: 0.55;
+      filter: saturate(0.6);
+    }
+    .path-fork.in-view .path-card:hover {
+      flex-grow: 1.35;
+      box-shadow: 0 30px 60px -20px rgba(10, 14, 26, 0.35);
+    }
+  }
+  .path-fork .fork-line {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    transition: stroke-dashoffset 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .path-fork.in-view .fork-line {
+    stroke-dashoffset: 0;
+  }
+  .path-fork.in-view .fork-line-right {
+    transition-delay: 0.2s;
+  }
 }
 
 @layer utilities {
