@@ -16,14 +16,16 @@ export const NAV_LINKS: readonly NavLink[] = [
 export interface ProblemCard {
   title: string;
   description: string;
+  /** R.I.S.E. stage this gap belongs to. Drives the card's colour splash. */
+  stage: CategoryKey;
 }
 
 export const PROBLEM_CARDS: readonly ProblemCard[] = [
-  { title: "No Safety Net", description: "One emergency could damage years of progress." },
-  { title: "Messy Cash Flow", description: "Debt, expenses and priorities are not organised." },
-  { title: "No Income Engine", description: "Your income depends on one job or one source." },
-  { title: "No Money Machine", description: "Your savings are not growing fast enough." },
-  { title: "No Legacy System", description: "There is no clear plan for leadership, succession or wealth transfer." },
+  { title: "No Safety Net", description: "One emergency could damage years of progress.", stage: "R" },
+  { title: "Messy Cash Flow", description: "Debt, expenses and priorities are not organised.", stage: "R" },
+  { title: "No Income Engine", description: "Your income depends on one job or one source.", stage: "I" },
+  { title: "No Money Machine", description: "Your savings are not growing fast enough.", stage: "S" },
+  { title: "No Legacy System", description: "There is no clear plan for leadership, succession or wealth transfer.", stage: "E" },
 ];
 
 export interface PyramidLevel {
