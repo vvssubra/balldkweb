@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { Check, MessageCircle } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import { HOW_IT_WORKS_STEPS, type HowItWorksStep } from "@/lib/site-content";
 
 interface HowItWorksProps {
@@ -137,9 +137,8 @@ export function HowItWorks({ steps = HOW_IT_WORKS_STEPS, heading = "How the Scor
             const Mock = STEP_MOCKS[index] ?? STEP_MOCKS[STEP_MOCKS.length - 1];
             return (
               <li key={step.title} className="step-item relative flex flex-col items-center text-center">
-                <span className="step-node relative z-10 flex size-10 items-center justify-center rounded-full border-2 border-gold bg-secondary font-heading text-sm font-bold text-foreground">
+                <span className="step-node relative z-10 flex size-10 items-center justify-center rounded-full border-2 border-gold font-heading text-sm font-bold text-navy">
                   {index + 1}
-                  <Check className="step-check absolute size-4 text-navy" aria-hidden="true" />
                 </span>
 
                 <div className="mt-6 flex w-full flex-1 flex-col rounded-2xl border border-border bg-card p-5 shadow-sm transition-transform duration-300 hover:-translate-y-1">
