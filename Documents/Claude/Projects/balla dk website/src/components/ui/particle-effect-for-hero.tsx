@@ -62,7 +62,7 @@ const randomRange = (min: number, max: number) => Math.random() * (max - min) + 
 
 // --- Components ---
 
-const AntiGravityCanvas: React.FC = () => {
+export const AntiGravityCanvas: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -328,10 +328,24 @@ const AntiGravityCanvas: React.FC = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, [initParticles]);
 
-  // Start Animation
+  // Start Animation. Only runs while the canvas is on screen so several instances
+  // on one page do not each burn a frame loop.
   useEffect(() => {
-    frameIdRef.current = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(frameIdRef.current);
+    const container = containerRef.current;
+    if (!container) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      cancelAnimationFrame(frameIdRef.current);
+      if (entry.isIntersecting) {
+        frameIdRef.current = requestAnimationFrame(animate);
+      }
+    });
+    observer.observe(container);
+
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frameIdRef.current);
+    };
   }, [animate]);
 
   // Mouse Handlers
