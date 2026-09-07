@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { AlertTriangle, TrendingUp, CircleCheck, MessageCircle, Briefcase, ChevronRight, RotateCcw, ArrowLeft } from "lucide-react";
 import type { CategoryKey, CategoryResult, ScorecardPath, Tier } from "@/lib/scoring/types";
 import {
@@ -27,6 +28,7 @@ const TIER_ICON: Record<Tier, typeof AlertTriangle> = {
 
 export function ResultScreen({ firstName, path, categoryResults, missingLetter, goal, onClose, onRestart }: ResultScreenProps) {
   const content = MISSING_LETTER_CONTENT[missingLetter];
+  const consultationLabel = resultCta(path, missingLetter);
   const disclaimer = path === "financial" ? FINANCIAL_DISCLAIMER : CAREER_DISCLAIMER;
   const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "";
 
@@ -111,18 +113,16 @@ export function ResultScreen({ firstName, path, categoryResults, missingLetter, 
             </span>
             <span className="flex-1">
               <span className="block text-sm font-semibold">Want to understand your result better?</span>
-              <span className="mt-0.5 block text-xs text-muted-foreground">Talk to me directly on WhatsApp.</span>
+              <span className="mt-0.5 block text-xs text-muted-foreground">
+                Talk to me directly on WhatsApp. Next step: {consultationLabel}.
+              </span>
             </span>
             <ChevronRight className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
           </button>
 
-          <button
-            type="button"
-            onClick={() => {
-              onClose();
-              const el = document.getElementById("agents");
-              el?.scrollIntoView({ behavior: "smooth" });
-            }}
+          <Link
+            href="/agents"
+            onClick={onClose}
             className="flex w-full items-center gap-4 rounded-xl border border-border bg-secondary/40 p-4 text-left transition-colors hover:bg-secondary"
           >
             <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
@@ -133,7 +133,7 @@ export function ResultScreen({ firstName, path, categoryResults, missingLetter, 
               <span className="mt-0.5 block text-xs text-muted-foreground">Explore how you can build a career with me.</span>
             </span>
             <ChevronRight className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
-          </button>
+          </Link>
         </div>
 
         <p className="my-4 text-center text-xs text-muted-foreground">Or</p>

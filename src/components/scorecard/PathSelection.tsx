@@ -1,4 +1,6 @@
 import type { ScorecardPath } from "@/lib/scoring/types";
+import { siteWhatsAppLink } from "@/lib/whatsapp";
+import { WhatsAppIcon } from "@/components/layout/FloatingWhatsApp";
 
 interface PathSelectionProps {
   onSelect: (path: ScorecardPath) => void;
@@ -43,9 +45,22 @@ export function PathSelection({ onSelect, onClose }: PathSelectionProps) {
           onClick={() => onSelect("financial")}
           className="rounded-xl border border-dashed border-border px-6 py-4 text-left text-sm text-muted-foreground transition-colors hover:border-gold"
         >
-          I am not sure yet — start with Financial Health
+          I am not sure yet. Start with Financial Health.
         </button>
       </div>
+
+      <p className="mt-8 text-sm text-muted-foreground">
+        Not sure where to start?{" "}
+        <a
+          href={siteWhatsAppLink("notSure")}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 font-medium text-foreground underline underline-offset-4 hover:text-gold"
+        >
+          <WhatsAppIcon className="size-4 text-[#25D366]" />
+          Talk to me.
+        </a>
+      </p>
     </div>
   );
 }

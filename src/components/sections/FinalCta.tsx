@@ -1,14 +1,35 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import type { ScorecardPath } from "@/lib/scoring/types";
+import { CTA, CTA_RESPONSIVE } from "@/lib/cta-styles";
+import { siteWhatsAppLink, type WhatsAppOpener } from "@/lib/whatsapp";
+import { useScorecard } from "@/components/scorecard/ScorecardProvider";
 
 interface FinalCtaProps {
-  onStartScorecard: () => void;
+  heading?: string;
+  supporting?: string;
+  scorecardLabel?: string;
+  /** Which scorecard the primary button opens. Omit for path selection. */
+  scorecardPath?: ScorecardPath;
+  /** Show the "Explore the Agency Opportunity" link. Off on the agents page itself. */
+  showAgencyLink?: boolean;
+  whatsappOpener?: WhatsAppOpener;
 }
 
-export function FinalCta({ onStartScorecard }: FinalCtaProps) {
+export function FinalCta({
+  heading = "You Do Not Need to Fix Everything Today.",
+  supporting = "You only need to identify your next R.I.S.E. step. I am here to help you find it.",
+  scorecardLabel = "Take the Free R.I.S.E. Scorecard",
+  scorecardPath,
+  showAgencyLink = true,
+  whatsappOpener = "general",
+}: FinalCtaProps) {
+  const { open } = useScorecard();
+
   return (
-    <section className="relative overflow-hidden bg-navy px-4 py-20 text-white sm:px-6">
+    <section className="relative overflow-hidden bg-navy px-4 py-20 text-white sm:px-6" aria-labelledby="final-heading">
       <Image
         src="/images/balla-dk-cta.jpg"
         alt=""
@@ -17,27 +38,24 @@ export function FinalCta({ onStartScorecard }: FinalCtaProps) {
         aria-hidden="true"
       />
       <div className="relative mx-auto max-w-2xl text-center">
-        <h2 className="text-3xl font-bold sm:text-4xl">You Do Not Need to Fix Everything Today.</h2>
-        <p className="mt-4 text-white/70">You only need to identify your next R.I.S.E. step. I am here to help you find it.</p>
+        <h2 id="final-heading" className="text-3xl font-bold sm:text-4xl">
+          {heading}
+        </h2>
+        <p className="mt-4 text-white/70">{supporting}</p>
         <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap">
-          <button
-            type="button"
-            onClick={onStartScorecard}
-            className="w-full rounded-full bg-gold px-6 py-3 text-sm font-bold text-navy transition-transform hover:scale-105 active:scale-95 sm:w-auto"
-          >
-            Take the Free R.I.S.E. Scorecard
+          <button type="button" onClick={() => open(scorecardPath)} className={`${CTA.gold} ${CTA_RESPONSIVE}`}>
+            {scorecardLabel}
           </button>
+          {showAgencyLink ? (
+            <Link href="/agents" className={`${CTA.outlineLight} ${CTA_RESPONSIVE}`}>
+              Explore the Agency Opportunity
+            </Link>
+          ) : null}
           <a
-            href="#agents"
-            className="w-full rounded-full border border-white/30 px-6 py-3 text-center text-sm font-bold text-white transition-colors hover:border-gold hover:text-gold sm:w-auto"
-          >
-            Explore the Agency Opportunity
-          </a>
-          <a
-            href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? ""}?text=${encodeURIComponent("Hi Balla, I visited your website and would like to find out more.")}`}
+            href={siteWhatsAppLink(whatsappOpener)}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full rounded-full border border-[#25D366]/50 px-6 py-3 text-center text-sm font-bold text-[#25D366] transition-colors hover:border-[#25D366] hover:bg-[#25D366]/10 sm:w-auto"
+            className={`${CTA.whatsapp} ${CTA_RESPONSIVE}`}
           >
             Talk to Balla
           </a>

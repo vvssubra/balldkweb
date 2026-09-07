@@ -1,10 +1,12 @@
+"use client";
+
 import { PROBLEM_CARDS } from "@/lib/site-content";
+import { CTA } from "@/lib/cta-styles";
+import { useScorecard } from "@/components/scorecard/ScorecardProvider";
 
-interface ProblemCardsProps {
-  onFindStep: () => void;
-}
+export function ProblemCards() {
+  const { open } = useScorecard();
 
-export function ProblemCards({ onFindStep }: ProblemCardsProps) {
   return (
     <section className="relative mx-auto max-w-6xl overflow-hidden px-4 py-20 sm:px-6" aria-labelledby="problem-heading">
       <div className="pointer-events-none absolute -top-16 right-0 size-72 rounded-full bg-gold/25 blur-3xl" aria-hidden="true" />
@@ -15,7 +17,8 @@ export function ProblemCards({ onFindStep }: ProblemCardsProps) {
           What Is Missing From Your Financial Life?
         </h2>
         <p className="mt-4 text-muted-foreground">
-          Most people do not have a money problem alone. They have a missing-system problem.
+          Most people I meet do not have a money problem alone. They have a missing-system problem.
+          See if any of these sound familiar.
         </p>
       </div>
 
@@ -41,13 +44,9 @@ export function ProblemCards({ onFindStep }: ProblemCardsProps) {
 
       <div className="mt-10 text-center">
         <p className="text-muted-foreground">
-          You do not need to solve everything today. You need to identify the correct next step.
+          You do not need to solve all of this today. You need to know which one to fix first.
         </p>
-        <button
-          type="button"
-          onClick={onFindStep}
-          className="mt-4 inline-flex items-center rounded-full bg-primary px-6 py-3 text-sm font-bold text-primary-foreground transition-transform hover:scale-105 active:scale-95"
-        >
+        <button type="button" onClick={() => open()} className={`${CTA.primary} mt-4`}>
           Find My Missing R.I.S.E. Step
         </button>
       </div>

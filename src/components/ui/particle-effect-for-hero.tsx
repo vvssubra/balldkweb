@@ -1,8 +1,16 @@
 "use client";
 
 import React, { useEffect, useRef, useCallback } from 'react';
-import { MousePointer2, ArrowRight } from 'lucide-react';
+import { MousePointer2, ArrowRight, Compass, ListChecks, Footprints } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useScorecard } from '@/components/scorecard/ScorecardProvider';
+
+const HERO_POINTS = [
+  { icon: Compass, label: 'Understand your financial position' },
+  { icon: ListChecks, label: 'Get a clear direction' },
+  { icon: Footprints, label: 'Take the next step with confidence' },
+] as const;
 
 // --- Types ---
 
@@ -353,12 +361,9 @@ const AntiGravityCanvas: React.FC = () => {
   );
 };
 
-interface HeroContentProps {
-  onStartScorecard: () => void;
-  onExploreAgency: () => void;
-}
+const HeroContent: React.FC = () => {
+  const { open } = useScorecard();
 
-const HeroContent: React.FC<HeroContentProps> = ({ onStartScorecard, onExploreAgency }) => {
   return (
     <div className="relative z-10 flex min-h-dvh flex-col items-center justify-center px-4 py-20 pointer-events-none">
       <div className="max-w-4xl w-full text-center space-y-8 pointer-events-auto">
@@ -390,6 +395,15 @@ const HeroContent: React.FC<HeroContentProps> = ({ onStartScorecard, onExploreAg
           the right next step for your goals.
         </p>
 
+        <ul className="flex flex-col items-center justify-center gap-3 text-sm text-white/70 sm:flex-row sm:gap-8">
+          {HERO_POINTS.map(({ icon: Icon, label }) => (
+            <li key={label} className="flex items-center gap-2">
+              <Icon className="size-4 text-gold" aria-hidden="true" />
+              {label}
+            </li>
+          ))}
+        </ul>
+
         <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
           <div className="relative rounded-full p-[2px] overflow-hidden transition-transform duration-300 hover:scale-105 active:scale-95">
             <span
@@ -398,20 +412,20 @@ const HeroContent: React.FC<HeroContentProps> = ({ onStartScorecard, onExploreAg
             />
             <button
               type="button"
-              onClick={onStartScorecard}
+              onClick={() => open()}
               className="group relative z-10 inline-flex items-center gap-3 px-8 py-4 bg-gold text-navy rounded-full font-bold tracking-wide transition-shadow duration-300 hover:shadow-[0_0_30px_rgba(212,175,55,0.5)]"
             >
               <span className="relative z-10">Take the R.I.S.E. Scorecard</span>
               <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
-          <button
-            type="button"
-            onClick={onExploreAgency}
+          <Link
+            href="/agents"
             className="inline-flex items-center gap-2 px-8 py-4 border border-white/20 text-white rounded-full font-medium tracking-wide transition-colors hover:border-gold/60 hover:bg-gold/10 hover:text-gold"
           >
             Explore the Agency Opportunity
-          </button>
+            <ArrowRight className="w-4 h-4" aria-hidden="true" />
+          </Link>
         </div>
 
         <p className="text-sm text-white/40">Free · 3 minutes · Personalised result</p>
@@ -422,16 +436,11 @@ const HeroContent: React.FC<HeroContentProps> = ({ onStartScorecard, onExploreAg
 
 // --- Main Hero Component ---
 
-interface ParticleEffectHeroProps {
-  onStartScorecard: () => void;
-  onExploreAgency: () => void;
-}
-
-export default function ParticleEffectHero({ onStartScorecard, onExploreAgency }: ParticleEffectHeroProps) {
+export default function ParticleEffectHero() {
   return (
     <div id="top" className="relative w-full min-h-dvh bg-navy overflow-hidden selection:bg-gold selection:text-navy">
       <AntiGravityCanvas />
-      <HeroContent onStartScorecard={onStartScorecard} onExploreAgency={onExploreAgency} />
+      <HeroContent />
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30 pointer-events-none motion-safe:animate-pulse">

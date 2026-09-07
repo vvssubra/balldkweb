@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { PYRAMID_LEVELS, type PyramidLevel } from "@/lib/site-content";
+import { useScorecard } from "@/components/scorecard/ScorecardProvider";
 
 const LEVEL_COLOR: Record<PyramidLevel["key"], string> = {
   R: "border-rise-r text-rise-r",
@@ -11,10 +12,15 @@ const LEVEL_COLOR: Record<PyramidLevel["key"], string> = {
 };
 
 interface RisePyramidProps {
-  onSelectPath: () => void;
+  heading?: string;
+  intro?: string;
 }
 
-export function RisePyramid({ onSelectPath }: RisePyramidProps) {
+export function RisePyramid({
+  heading = "What Is R.I.S.E.?",
+  intro = "Four stages, in order. Select a level to see the problem it solves and the outcome it builds.",
+}: RisePyramidProps) {
+  const { open } = useScorecard();
   const [activeKey, setActiveKey] = useState<PyramidLevel["key"]>("R");
   const active = PYRAMID_LEVELS.find((level) => level.key === activeKey) ?? PYRAMID_LEVELS[0];
 
@@ -22,12 +28,11 @@ export function RisePyramid({ onSelectPath }: RisePyramidProps) {
     <section id="roadmap" className="bg-secondary px-4 py-20 sm:px-6" aria-labelledby="pyramid-heading">
       <div className="mx-auto max-w-6xl">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 id="pyramid-heading" className="text-3xl font-bold sm:text-4xl">
-            The R.I.S.E. Roadmap
+          <p className="text-xs font-semibold uppercase tracking-widest text-gold">The R.I.S.E. Roadmap</p>
+          <h2 id="pyramid-heading" className="mt-2 text-3xl font-bold sm:text-4xl">
+            {heading}
           </h2>
-          <p className="mt-4 text-muted-foreground">
-            Four stages. Select a level to see the problem it solves and the outcome it builds.
-          </p>
+          <p className="mt-4 text-muted-foreground">{intro}</p>
         </div>
 
         <div className="mt-12 grid gap-8 lg:grid-cols-[1fr_1.2fr]">
@@ -51,27 +56,27 @@ export function RisePyramid({ onSelectPath }: RisePyramidProps) {
 
           <div className={`rise-card rounded-2xl border-2 p-8 transition-[border-color,color] duration-200 ${LEVEL_COLOR[active.key]}`}>
             <div key={active.key} style={{ animation: "panel-fade-in 0.22s cubic-bezier(0.16, 1, 0.3, 1) both" }}>
-            <h3 className="font-heading text-2xl font-bold">{active.name}</h3>
-            <p className="mt-1 text-sm font-medium text-muted-foreground">{active.step}</p>
+              <h3 className="font-heading text-2xl font-bold">{active.name}</h3>
+              <p className="mt-1 text-sm font-medium text-muted-foreground">{active.step}</p>
 
-            <dl className="mt-6 space-y-4 text-sm">
-              <div>
-                <dt className="font-semibold text-foreground">The problem</dt>
-                <dd className="mt-1 text-muted-foreground">{active.problem}</dd>
-              </div>
-              <div>
-                <dt className="font-semibold text-foreground">The outcome</dt>
-                <dd className="mt-1 text-muted-foreground">{active.outcome}</dd>
-              </div>
-            </dl>
+              <dl className="mt-6 space-y-4 text-sm">
+                <div>
+                  <dt className="font-semibold text-foreground">The problem</dt>
+                  <dd className="mt-1 text-muted-foreground">{active.problem}</dd>
+                </div>
+                <div>
+                  <dt className="font-semibold text-foreground">The outcome</dt>
+                  <dd className="mt-1 text-muted-foreground">{active.outcome}</dd>
+                </div>
+              </dl>
 
-            <button
-              type="button"
-              onClick={onSelectPath}
-              className="mt-6 rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground transition-transform hover:scale-105 active:scale-95"
-            >
-              Take the Scorecard
-            </button>
+              <button
+                type="button"
+                onClick={() => open()}
+                className="mt-6 rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground transition-transform hover:scale-105 active:scale-95"
+              >
+                Find My Stage
+              </button>
             </div>
           </div>
         </div>

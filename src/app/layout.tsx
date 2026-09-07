@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
+import { ScorecardProvider } from "@/components/scorecard/ScorecardProvider";
+import { FloatingWhatsApp } from "@/components/layout/FloatingWhatsApp";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -13,13 +15,16 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Balla DK | R.I.S.E. Financial and Career Roadmap",
+  title: {
+    default: "Balla DK | Know Where You Stand. Know Where to Go Next.",
+    template: "%s | Balla DK",
+  },
   description:
-    "Discover your next financial or career step with Balla DK's free R.I.S.E. Scorecard. Build protection, income, wealth and legacy through a clear personalised roadmap.",
+    "I help you understand your financial position through the R.I.S.E. framework, then find the right next step. Free three-minute scorecard, personalised result, direct WhatsApp follow-up.",
   openGraph: {
-    title: "Balla DK | R.I.S.E. Financial and Career Roadmap",
+    title: "Balla DK | Know Where You Stand. Know Where to Go Next.",
     description:
-      "Discover your next financial or career step with Balla DK's free R.I.S.E. Scorecard.",
+      "Free R.I.S.E. Scorecard. Understand your financial or career position and find your next step with Balla DK.",
     type: "website",
   },
 };
@@ -41,7 +46,10 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        {children}
+        <ScorecardProvider>
+          {children}
+          <FloatingWhatsApp />
+        </ScorecardProvider>
       </body>
     </html>
   );
