@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { CAREER_DISCLAIMER, FINANCIAL_DISCLAIMER, NAV_LINKS } from "@/lib/site-content";
+import { siteWhatsAppLink } from "@/lib/whatsapp";
 
 export function Footer() {
   return (
@@ -14,16 +16,24 @@ export function Footer() {
 
       <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1.2fr_1fr]">
         <div>
-          <a href="#top" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gold text-sm font-bold text-navy">
               B
             </span>
             <span className="text-lg font-medium tracking-wide text-white">Balla DK</span>
-          </a>
+          </Link>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/50">
-            One clear financial roadmap. Two paths. A clearer next step — protect, strengthen, grow and
-            build a legacy.
+            I help you know where you stand and where to go next. One roadmap, two paths, and a real
+            person on the other end of the message.
           </p>
+          <a
+            href={siteWhatsAppLink("general")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-block text-sm font-medium text-[#25D366] transition-colors hover:text-white"
+          >
+            Talk to me on WhatsApp
+          </a>
         </div>
 
         <nav aria-label="Footer">
@@ -31,9 +41,9 @@ export function Footer() {
           <ul className="mt-4 grid grid-cols-2 gap-3 text-sm text-white/60 sm:grid-cols-3">
             {NAV_LINKS.map((link) => (
               <li key={link.href}>
-                <a href={link.href} className="transition-colors hover:text-white">
+                <Link href={link.href} className="transition-colors hover:text-white">
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

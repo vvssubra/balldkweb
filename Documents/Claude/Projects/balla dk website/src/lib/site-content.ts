@@ -6,11 +6,11 @@ export interface NavLink {
 }
 
 export const NAV_LINKS: readonly NavLink[] = [
-  { label: "R.I.S.E. Roadmap", href: "#roadmap" },
-  { label: "For Clients", href: "#clients" },
-  { label: "For Agents", href: "#agents" },
-  { label: "About", href: "#about" },
-  { label: "FAQ", href: "#faq" },
+  { label: "R.I.S.E. Roadmap", href: "/#roadmap" },
+  { label: "For Clients", href: "/clients" },
+  { label: "For Agents", href: "/agents" },
+  { label: "About", href: "/#about" },
+  { label: "FAQ", href: "/#faq" },
 ];
 
 export interface ProblemCard {
@@ -67,15 +67,21 @@ export const PYRAMID_LEVELS: readonly PyramidLevel[] = [
 
 export interface PathCard {
   path: ScorecardPath;
+  eyebrow: string;
   heading: string;
+  intro: string;
   bullets: readonly string[];
+  href: string;
   cta: string;
+  scorecardCta: string;
 }
 
 export const PATH_CARDS: readonly PathCard[] = [
   {
     path: "financial",
+    eyebrow: "For clients",
     heading: "Build Financial Clarity",
+    intro: "You want to protect your family, sort out your cash flow and grow what you have. I help you do it in the right order.",
     bullets: [
       "Identify financial blind spots",
       "Strengthen protection and emergency planning",
@@ -83,11 +89,15 @@ export const PATH_CARDS: readonly PathCard[] = [
       "Build a goal-based wealth plan",
       "Receive a personalised next-step recommendation",
     ],
-    cta: "Take the Financial Health Scorecard",
+    href: "/clients",
+    cta: "Explore for Clients",
+    scorecardCta: "Take the Financial Health Scorecard",
   },
   {
     path: "career",
+    eyebrow: "For agents",
     heading: "Build Income, Skills and Leadership",
+    intro: "You want a career where your income grows with your skill, and a mentor who holds you to it. That is what I build in my agency.",
     bullets: [
       "Assess career readiness",
       "Identify transferable strengths",
@@ -95,7 +105,9 @@ export const PATH_CARDS: readonly PathCard[] = [
       "Understand the mentorship system",
       "Discover your leadership potential",
     ],
-    cta: "Take the Career Growth Scorecard",
+    href: "/agents",
+    cta: "Explore for Agents",
+    scorecardCta: "Take the Career Growth Scorecard",
   },
 ];
 
@@ -108,23 +120,34 @@ export const OUTCOME_ROWS: readonly { before: string; after: string }[] = [
   { before: "Reactive decision-making", after: "A plan for leadership and legacy" },
 ];
 
-export const HOW_IT_WORKS_STEPS: readonly { title: string; description: string }[] = [
-  { title: "Answer a few practical questions", description: "One question per screen. Takes a few minutes." },
-  { title: "Receive your personalised R.I.S.E. result", description: "See your score across Restore, Income, Sustain and Empire." },
-  { title: "Follow the recommended next-step plan", description: "A clear, practical action for your priority stage." },
+export interface HowItWorksStep {
+  title: string;
+  description: string;
+}
+
+export const HOW_IT_WORKS_STEPS: readonly HowItWorksStep[] = [
+  { title: "Answer 12 practical questions", description: "One question per screen. About three minutes. No jargon." },
+  { title: "See your R.I.S.E. result straight away", description: "Your score across Restore, Income, Sustain and Empire, and the stage that needs attention first." },
+  { title: "Take the next step with me", description: "Your result comes with three practical actions. If you want to talk it through, I am one WhatsApp message away." },
 ];
 
-export const FAQ_ITEMS: readonly { question: string; answer: string }[] = [
-  { question: "What is the R.I.S.E. Roadmap?", answer: "A four-stage framework — Restore, Income, Sustain, Empire — that helps you identify your next financial or career priority." },
-  { question: "Is the scorecard free?", answer: "Yes. The scorecard is completely free with no obligation." },
-  { question: "How long does it take?", answer: "About 3–5 minutes to answer 12 questions." },
-  { question: "Will I receive personalised advice?", answer: "You receive a personalised result and recommended next step. This is educational, not individualised financial, investment, legal or tax advice." },
-  { question: "Is this suitable for beginners?", answer: "Yes, the scorecard is designed for people at any stage." },
-  { question: "Is this only for insurance clients?", answer: "No. The Financial Health path is for anyone who wants clarity on protection, cash flow, income or wealth." },
-  { question: "How does the agency opportunity work?", answer: "The Career Growth path introduces a performance-based career with mentorship and structured training." },
-  { question: "Do I need sales experience?", answer: "No prior sales experience is required — willingness to learn matters most." },
-  { question: "Can existing agents apply?", answer: "Yes, existing agents and leaders can take the Career Growth scorecard with leadership-focused questions." },
-  { question: "How will my information be used?", answer: "Only to share your result and relevant follow-up by email or WhatsApp. You can unsubscribe at any time." },
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+export const FAQ_ITEMS: readonly FaqItem[] = [
+  { question: "What is the R.I.S.E. Roadmap?", answer: "It is the four-stage framework I use with every client and every agent: Restore, Income, Sustain, Empire. It tells you which financial or career priority to work on first, so you stop trying to fix everything at once." },
+  { question: "Is the scorecard free?", answer: "Yes. Completely free, no obligation. You get your result on screen the moment you finish." },
+  { question: "How long does it take?", answer: "About three minutes. Twelve questions, one per screen." },
+  { question: "Will I receive personalised advice?", answer: "You receive a personalised result and a recommended next step based on your answers. It is educational, not individual financial, investment, legal or tax advice. That part happens when we talk." },
+  { question: "Is this suitable for beginners?", answer: "Yes. Most people I meet have never had a clear financial roadmap. The scorecard is built for exactly that starting point." },
+  { question: "Is this only for insurance clients?", answer: "No. The Financial Health path is for anyone who wants clarity on protection, cash flow, income or wealth, whether or not they ever buy anything from me." },
+  { question: "How does the agency opportunity work?", answer: "I lead an agency in the financial services industry and I mentor people who want to build a performance-based career with structured training and support. The For Agents page explains the role, who it suits and what the career path looks like." },
+  { question: "Do I need sales experience?", answer: "No. Willingness to learn and to follow a weekly plan matters far more than experience. I will teach the rest." },
+  { question: "Can existing agents apply?", answer: "Yes. If you are already an agent or leader, take the Career Growth scorecard and tell me your situation. The questions cover leadership and team-building too." },
+  { question: "What happens after I get my result?", answer: "Nothing, unless you want it to. You can message me on WhatsApp to talk through your result, explore the agency opportunity, or simply keep the result for yourself." },
+  { question: "How will my information be used?", answer: "Only to share your result and follow up with you by email or WhatsApp. I do not sell or share your details. You can unsubscribe at any time." },
 ];
 
 export const FINANCIAL_DISCLAIMER =

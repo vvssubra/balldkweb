@@ -2,19 +2,27 @@
 
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { FAQ_ITEMS } from "@/lib/site-content";
+import { FAQ_ITEMS, type FaqItem } from "@/lib/site-content";
+import { CTA } from "@/lib/cta-styles";
+import { siteWhatsAppLink } from "@/lib/whatsapp";
+import { WhatsAppIcon } from "@/components/layout/FloatingWhatsApp";
 
-export function Faq() {
+interface FaqProps {
+  items?: readonly FaqItem[];
+  heading?: string;
+}
+
+export function Faq({ items = FAQ_ITEMS, heading = "Frequently Asked Questions" }: FaqProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
     <section id="faq" className="mx-auto max-w-3xl px-4 py-20 sm:px-6" aria-labelledby="faq-heading">
       <h2 id="faq-heading" className="text-center text-3xl font-bold sm:text-4xl">
-        Frequently Asked Questions
+        {heading}
       </h2>
 
       <div className="rise-card mt-10 divide-y divide-border/60 rounded-2xl">
-        {FAQ_ITEMS.map((item, index) => {
+        {items.map((item, index) => {
           const isOpen = openIndex === index;
           const panelId = `faq-panel-${index}`;
           const buttonId = `faq-button-${index}`;
@@ -54,6 +62,20 @@ export function Faq() {
             </div>
           );
         })}
+      </div>
+
+      <div className="mt-10 text-center">
+        <p className="font-heading text-lg font-semibold">Still have a question?</p>
+        <p className="mt-1 text-sm text-muted-foreground">Ask me directly. I read and reply to these myself.</p>
+        <a
+          href={siteWhatsAppLink("faq")}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`${CTA.whatsappSolid} mt-4`}
+        >
+          <WhatsAppIcon className="size-4" />
+          Ask on WhatsApp
+        </a>
       </div>
     </section>
   );

@@ -1,15 +1,20 @@
 import { SOCIAL_PROOF_PLACEHOLDERS } from "@/lib/site-content";
 
-export function SocialProof() {
+interface SocialProofProps {
+  heading?: string;
+}
+
+export function SocialProof({ heading = "Client and Agent Stories" }: SocialProofProps) {
   return (
-    <section className="bg-secondary px-4 py-20 sm:px-6" aria-labelledby="proof-heading">
+    <section id="stories" className="bg-secondary px-4 py-20 sm:px-6" aria-labelledby="proof-heading">
       <div className="mx-auto max-w-6xl">
         <div className="mx-auto max-w-2xl text-center">
           <h2 id="proof-heading" className="text-3xl font-bold sm:text-4xl">
-            Client and Agent Stories
+            {heading}
           </h2>
           <p className="mt-4 text-sm text-muted-foreground">
-            Verified stories will appear here once permission and documentation are confirmed.
+            I only publish stories from real clients and agents, with their permission. Verified stories
+            will appear here as they are confirmed.
           </p>
         </div>
 
