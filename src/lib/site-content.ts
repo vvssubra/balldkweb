@@ -13,6 +13,36 @@ export const NAV_LINKS: readonly NavLink[] = [
   { label: "FAQ", href: "/#faq" },
 ];
 
+/** Key of the icon each hero point renders. Mapped to a component in the hero. */
+export type HeroPointIcon = "position" | "direction" | "action";
+
+export interface HeroPoint {
+  icon: HeroPointIcon;
+  label: string;
+}
+
+/**
+ * Homepage hero. First impression has to answer four things in order:
+ * who I am, what I help with, how (R.I.S.E.) and what to do next.
+ */
+export const HOME_HERO = {
+  eyebrow: "Financial Mentor & Advisor",
+  headline: "Know Where You Stand.",
+  headlineAccent: "Know Where to Go Next.",
+  subheadline:
+    "I help you understand your financial position through the R.I.S.E. framework, then find the right next step for your goals.",
+  points: [
+    { icon: "position", label: "Understand your financial position" },
+    { icon: "direction", label: "Get a clear direction" },
+    { icon: "action", label: "Take action with confidence" },
+  ] as readonly HeroPoint[],
+  primaryCta: "Take the R.I.S.E. Scorecard",
+  secondaryCta: "Explore the Agency Opportunity",
+  secondaryHref: "/agents",
+  note: "Free · 3 minutes · Personalised result",
+  portraitAlt: "Portrait of Balla DK, Malaysian financial mentor and agency leader",
+} as const;
+
 export interface ProblemCard {
   title: string;
   description: string;

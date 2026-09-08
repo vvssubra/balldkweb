@@ -5,12 +5,15 @@ import { MousePointer2, ArrowRight, Compass, ListChecks, Footprints } from 'luci
 import Image from 'next/image';
 import Link from 'next/link';
 import { useScorecard } from '@/components/scorecard/ScorecardProvider';
+import { HOME_HERO, type HeroPointIcon } from '@/lib/site-content';
 
-const HERO_POINTS = [
-  { icon: Compass, label: 'Understand your financial position' },
-  { icon: ListChecks, label: 'Get a clear direction' },
-  { icon: Footprints, label: 'Take the next step with confidence' },
-] as const;
+type IconComponent = React.ComponentType<React.SVGProps<SVGSVGElement>>;
+
+const HERO_POINT_ICONS: Record<HeroPointIcon, IconComponent> = {
+  position: ListChecks,
+  direction: Compass,
+  action: Footprints,
+};
 
 // --- Types ---
 
@@ -460,70 +463,91 @@ const HeroContent: React.FC = () => {
   const { open } = useScorecard();
 
   return (
-    <div className="relative z-10 flex min-h-dvh flex-col items-center justify-center px-4 py-20 pointer-events-none">
-      <div className="max-w-4xl w-full text-center space-y-8 pointer-events-auto">
-        <div className="flex justify-center">
-          <Image
-            src="/images/balla-dk-hero.jpg"
-            alt="Portrait of Balla DK, Malaysian financial mentor and agency leader"
-            width={140}
-            height={140}
-            priority
-            className="size-28 rounded-full border-2 border-gold/60 object-cover object-top transition-all duration-300 hover:border-gold hover:shadow-[0_0_25px_rgba(212,175,55,0.4)] sm:size-36"
+    <div className="pointer-events-none relative z-10 mx-auto flex min-h-dvh w-full max-w-7xl flex-col justify-center px-4 py-20 sm:px-6 lg:px-8">
+      <div className="pointer-events-auto grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12">
+        {/* Portrait. Circular crop on mobile so the copy stays above the fold, full
+            framed portrait from lg where there is room for it beside the text. */}
+        <div className="relative order-first mx-auto w-full max-w-[7rem] sm:max-w-[9rem] lg:order-last lg:max-w-none">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -inset-10 hidden rounded-full bg-[radial-gradient(circle_at_60%_40%,rgba(212,175,55,0.22),transparent_70%)] blur-2xl lg:block"
           />
-        </div>
-
-        <div className="inline-block">
-          <span className="py-1 px-3 border border-gold/30 rounded-full text-xs font-mono text-gold tracking-widest uppercase bg-gold/5 backdrop-blur-sm">
-            Financial Mentor &amp; Advisor
-          </span>
-        </div>
-
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tighter">
-          Know Where You Stand.
-          <br />
-          <span className="text-gold">Know Where to Go Next.</span>
-        </h1>
-
-        <p className="max-w-2xl mx-auto text-lg md:text-xl text-white/60 font-light leading-relaxed">
-          I help you understand your financial position through the R.I.S.E. framework, then find
-          the right next step for your goals.
-        </p>
-
-        <ul className="flex flex-col items-center justify-center gap-3 text-sm text-white/70 sm:flex-row sm:gap-8">
-          {HERO_POINTS.map(({ icon: Icon, label }) => (
-            <li key={label} className="flex items-center gap-2">
-              <Icon className="size-4 text-gold" aria-hidden="true" />
-              {label}
-            </li>
-          ))}
-        </ul>
-
-        <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <div className="relative rounded-full p-[2px] overflow-hidden transition-transform duration-300 hover:scale-105 active:scale-95">
-            <span
-              aria-hidden="true"
-              className="cta-trail-ring absolute inset-[-50%] bg-[conic-gradient(from_0deg,transparent_0deg,transparent_260deg,rgba(255,255,255,0.9)_300deg,var(--gold)_330deg,transparent_360deg)]"
+          <div className="relative aspect-square overflow-hidden rounded-full border-2 border-gold/60 transition-colors duration-300 hover:border-gold lg:aspect-[4/5] lg:rounded-[2rem] lg:border lg:border-white/10 lg:shadow-[0_30px_60px_-25px_rgba(0,0,0,0.9)]">
+            <Image
+              src="/images/balla-dk-hero.jpg"
+              alt={HOME_HERO.portraitAlt}
+              fill
+              priority
+              sizes="(min-width: 1024px) 42vw, 9rem"
+              className="object-cover object-top lg:object-[50%_32%]"
             />
-            <button
-              type="button"
-              onClick={() => open()}
-              className="group relative z-10 inline-flex items-center gap-3 px-8 py-4 bg-gold text-navy rounded-full font-bold tracking-wide transition-shadow duration-300 hover:shadow-[0_0_30px_rgba(212,175,55,0.5)]"
-            >
-              <span className="relative z-10">Take the R.I.S.E. Scorecard</span>
-              <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
-            </button>
+            <div
+              aria-hidden="true"
+              className="absolute inset-x-0 bottom-0 hidden h-2/5 bg-gradient-to-t from-navy via-navy/50 to-transparent lg:block"
+            />
           </div>
-          <Link
-            href="/agents"
-            className="inline-flex items-center gap-2 px-8 py-4 border border-white/20 text-white rounded-full font-medium tracking-wide transition-colors hover:border-gold/60 hover:bg-gold/10 hover:text-gold"
-          >
-            Explore the Agency Opportunity
-            <ArrowRight className="w-4 h-4" aria-hidden="true" />
-          </Link>
         </div>
 
-        <p className="text-sm text-white/40">Free · 3 minutes · Personalised result</p>
+        <div className="space-y-6 text-center lg:text-left">
+          <div className="inline-block">
+            <span className="rounded-full border border-gold/30 bg-gold/5 px-3 py-1 font-mono text-xs uppercase tracking-widest text-gold backdrop-blur-sm">
+              {HOME_HERO.eyebrow}
+            </span>
+          </div>
+
+          <h1 className="text-balance text-4xl font-bold leading-[1.08] tracking-tighter text-white sm:text-5xl lg:text-[3rem] xl:text-[3.35rem]">
+            {HOME_HERO.headline}
+            <br />
+            <span className="text-gold">{HOME_HERO.headlineAccent}</span>
+          </h1>
+
+          <p className="mx-auto max-w-xl text-lg font-light leading-relaxed text-white/60 lg:mx-0">
+            {HOME_HERO.subheadline}
+          </p>
+
+          <ul className="mx-auto grid max-w-xs gap-2.5 text-sm text-white/70 sm:max-w-none sm:grid-cols-3 sm:gap-4">
+            {HOME_HERO.points.map(({ icon, label }) => {
+              const Icon = HERO_POINT_ICONS[icon];
+              return (
+                <li
+                  key={label}
+                  className="flex items-center gap-3 text-left sm:flex-col sm:items-center sm:gap-2 sm:text-center lg:items-start lg:text-left"
+                >
+                  <span className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-gold/25 bg-gold/10 sm:size-9">
+                    <Icon className="size-4 text-gold" aria-hidden="true" />
+                  </span>
+                  <span className="leading-snug">{label}</span>
+                </li>
+              );
+            })}
+          </ul>
+
+          <div className="flex flex-col items-center gap-4 pt-2 sm:flex-row sm:justify-center lg:justify-start">
+            <div className="relative overflow-hidden rounded-full p-[2px] transition-transform duration-300 hover:scale-105 active:scale-95">
+              <span
+                aria-hidden="true"
+                className="cta-trail-ring absolute inset-[-50%] bg-[conic-gradient(from_0deg,transparent_0deg,transparent_260deg,rgba(255,255,255,0.9)_300deg,var(--gold)_330deg,transparent_360deg)]"
+              />
+              <button
+                type="button"
+                onClick={() => open()}
+                className="group relative z-10 inline-flex items-center gap-3 whitespace-nowrap rounded-full bg-gold px-7 py-4 font-bold tracking-wide text-navy transition-shadow duration-300 hover:shadow-[0_0_30px_rgba(212,175,55,0.5)]"
+              >
+                <span className="relative z-10">{HOME_HERO.primaryCta}</span>
+                <ArrowRight className="relative z-10 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </button>
+            </div>
+            <Link
+              href={HOME_HERO.secondaryHref}
+              className="inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-white/20 px-7 py-4 font-medium tracking-wide text-white transition-colors hover:border-gold/60 hover:bg-gold/10 hover:text-gold"
+            >
+              {HOME_HERO.secondaryCta}
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </div>
+
+          <p className="text-sm text-white/40">{HOME_HERO.note}</p>
+        </div>
       </div>
     </div>
   );
