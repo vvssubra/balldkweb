@@ -464,31 +464,38 @@ const HeroContent: React.FC = () => {
 
   return (
     <div className="pointer-events-none relative z-10 mx-auto flex min-h-dvh w-full max-w-7xl flex-col justify-center px-4 py-20 sm:px-6 lg:px-8">
-      <div className="pointer-events-auto grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12">
-        {/* Portrait. Circular crop on mobile so the copy stays above the fold, full
-            framed portrait from lg where there is room for it beside the text. */}
-        <div className="relative order-first mx-auto w-full max-w-[7rem] sm:max-w-[9rem] lg:order-last lg:max-w-none">
+      <div className="pointer-events-auto grid items-center gap-10 lg:block">
+        {/* Portrait. Circular crop on mobile so the copy stays above the fold. From lg it
+            leaves the flow and spans the whole section: it runs off the right edge of the
+            viewport, its top sits under the nav and its bottom meets the next navy
+            section, so the only edge left to hide is the one facing the copy. */}
+        <div className="relative order-first mx-auto w-full max-w-[7rem] sm:max-w-[9rem] lg:pointer-events-none lg:absolute lg:inset-y-0 lg:right-[calc(-1*max(0px,(100vw_-_80rem)/2))] lg:m-0 lg:w-[44%] lg:max-w-none">
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute -inset-10 hidden rounded-full bg-[radial-gradient(circle_at_60%_40%,rgba(212,175,55,0.22),transparent_70%)] blur-2xl lg:block"
+            className="pointer-events-none absolute -inset-10 hidden rounded-full bg-[radial-gradient(circle_at_50%_38%,rgba(212,175,55,0.16),transparent_68%)] blur-2xl lg:block"
           />
-          <div className="relative aspect-square overflow-hidden rounded-full border-2 border-gold/60 transition-colors duration-300 hover:border-gold lg:aspect-[4/5] lg:rounded-[2rem] lg:border lg:border-white/10 lg:shadow-[0_30px_60px_-25px_rgba(0,0,0,0.9)]">
+          <div className="relative aspect-square h-full overflow-hidden rounded-full border-2 border-gold/60 transition-colors duration-300 hover:border-gold lg:aspect-auto lg:rounded-none lg:border-0 lg:[mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.35)_18%,#000_46%)] lg:[-webkit-mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.35)_18%,#000_46%)]">
             <Image
               src="/images/balla-dk-hero.jpg"
               alt={HOME_HERO.portraitAlt}
               fill
               priority
-              sizes="(min-width: 1024px) 42vw, 9rem"
-              className="object-cover object-top lg:object-[50%_32%]"
+              sizes="(min-width: 1024px) 45vw, 9rem"
+              className="object-cover object-top lg:object-[50%_30%]"
             />
+            {/* The copy-facing edge is feathered by the mask above rather than a wash: a
+                navy wash would paint over the canvas glow behind it and leave a seam.
+                These only settle the top and bottom, and drop the bright window behind
+                him back to background level so he reads as the subject. */}
             <div
               aria-hidden="true"
-              className="absolute inset-x-0 bottom-0 hidden h-2/5 bg-gradient-to-t from-navy via-navy/50 to-transparent lg:block"
+              className="absolute inset-0 hidden bg-[linear-gradient(to_bottom,var(--navy)_0%,rgba(0,0,0,0)_20%),linear-gradient(to_top,var(--navy)_0%,rgba(0,0,0,0)_24%),radial-gradient(62%_56%_at_54%_44%,rgba(0,0,0,0)_0%,rgba(0,0,0,0)_36%,var(--navy)_100%)] lg:block"
             />
+            <div aria-hidden="true" className="absolute inset-0 hidden bg-navy/25 lg:block" />
           </div>
         </div>
 
-        <div className="space-y-6 text-center lg:text-left">
+        <div className="space-y-6 text-center lg:max-w-[54%] lg:text-left">
           <div className="inline-block">
             <span className="rounded-full border border-gold/30 bg-gold/5 px-3 py-1 font-mono text-xs uppercase tracking-widest text-gold backdrop-blur-sm">
               {HOME_HERO.eyebrow}
