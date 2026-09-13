@@ -22,7 +22,7 @@ export function ProblemCards() {
   const { open } = useScorecard();
 
   return (
-    <section className="relative overflow-hidden bg-navy px-4 py-20 text-white sm:px-6" aria-labelledby="problem-heading">
+    <section className="relative overflow-hidden bg-navy px-4 py-14 text-white sm:px-6 sm:py-20" aria-labelledby="problem-heading">
       <AntiGravityCanvas />
 
       {/* Content sits above the canvas but lets pointer events through to it outside the cards. */}
@@ -37,7 +37,7 @@ export function ProblemCards() {
           </p>
         </Reveal>
 
-        <RevealGroup variant="scale" stagger={100} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <RevealGroup variant="scale" stagger={100} className="mt-10 grid sm:mt-12 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {PROBLEM_CARDS.map((card, index) => {
             const style = STAGE_STYLE[card.stage];
             const isLead = index === 0;

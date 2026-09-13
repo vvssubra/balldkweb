@@ -65,6 +65,8 @@ const COLOR_WHITE = '#FFFFFF';
 
 const PARTICLE_DENSITY = 0.00015; // Particles per pixel squared (adjust for density)
 const BG_PARTICLE_DENSITY = 0.00005; // Less dense for background
+/** Canvas backing-store cap. Phones report 3; past 2 the extra pixels are wasted fill. */
+const MAX_DPR = 2;
 const MOUSE_RADIUS = 180; // Radius of mouse influence
 const RETURN_SPEED = 0.08; // How fast particles fly back to origin (spring constant)
 const DAMPING = 0.90; // Friction (velocity decay)
@@ -384,10 +386,20 @@ export const AntiGravityCanvas: React.FC<AntiGravityCanvasProps> = ({ shootingSt
 
   // Resize Handler
   useEffect(() => {
+    // Mobile browsers fire resize when the URL bar hides or shows, which only
+    // changes height. Re-initialising particles then makes the field visibly jump,
+    // so a height-only change on a touch device is ignored.
+    let lastWidth = 0;
+    let lastHeight = 0;
+
     const handleResize = () => {
       if (containerRef.current && canvasRef.current) {
         const { width, height } = containerRef.current.getBoundingClientRect();
-        const dpr = window.devicePixelRatio || 1;
+        const coarsePointer = window.matchMedia("(pointer: coarse)").matches;
+        if (coarsePointer && width === lastWidth && lastHeight !== 0) return;
+        lastWidth = width;
+        lastHeight = height;
+        const dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR);
 
         // Set actual size in memory (scaled to account for extra pixel density)
         canvasRef.current.width = width * dpr;
@@ -418,11 +430,20 @@ export const AntiGravityCanvas: React.FC<AntiGravityCanvasProps> = ({ shootingSt
     const container = containerRef.current;
     if (!container) return;
 
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
     const observer = new IntersectionObserver(([entry]) => {
       cancelAnimationFrame(frameIdRef.current);
-      if (entry.isIntersecting) {
-        frameIdRef.current = requestAnimationFrame(animate);
+      if (!entry.isIntersecting) return;
+      if (reducedMotion.matches) {
+        // One frame so the field is drawn, then leave it still.
+        frameIdRef.current = requestAnimationFrame((t) => {
+          animate(t);
+          cancelAnimationFrame(frameIdRef.current);
+        });
+        return;
       }
+      frameIdRef.current = requestAnimationFrame(animate);
     });
     observer.observe(container);
 
@@ -463,7 +484,7 @@ const HeroContent: React.FC = () => {
   const { open } = useScorecard();
 
   return (
-    <div className="pointer-events-none relative z-10 mx-auto flex min-h-dvh w-full max-w-7xl flex-col justify-center px-4 py-20 sm:px-6 lg:px-8">
+    <div className="pointer-events-none relative z-10 mx-auto flex min-h-dvh w-full max-w-7xl flex-col justify-center px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
       <div className="pointer-events-auto grid items-center gap-10 lg:block">
         {/* Portrait. Circular crop on mobile so the copy stays above the fold. From lg it
             leaves the flow and spans the whole section: it runs off the right edge of the
@@ -495,7 +516,7 @@ const HeroContent: React.FC = () => {
           </div>
         </div>
 
-        <div className="space-y-6 text-center lg:max-w-[54%] lg:text-left">
+        <div className="space-y-5 text-center sm:space-y-6 lg:max-w-[54%] lg:text-left">
           <div className="inline-block">
             <span className="rounded-full border border-gold/30 bg-gold/5 px-3 py-1 font-mono text-xs uppercase tracking-widest text-gold backdrop-blur-sm">
               {HOME_HERO.eyebrow}
@@ -508,11 +529,11 @@ const HeroContent: React.FC = () => {
             <span className="text-gold">{HOME_HERO.headlineAccent}</span>
           </h1>
 
-          <p className="mx-auto max-w-xl text-lg font-light leading-relaxed text-white/60 lg:mx-0">
+          <p className="mx-auto max-w-xl text-base font-light leading-relaxed text-white/60 sm:text-lg lg:mx-0">
             {HOME_HERO.subheadline}
           </p>
 
-          <ul className="mx-auto grid max-w-xs gap-2.5 text-sm text-white/70 sm:max-w-none sm:grid-cols-3 sm:gap-4">
+          <ul className="mx-auto hidden max-w-xs gap-2.5 text-sm text-white/70 sm:grid sm:max-w-none sm:grid-cols-3 sm:gap-4">
             {HOME_HERO.points.map(({ icon, label }) => {
               const Icon = HERO_POINT_ICONS[icon];
               return (
@@ -529,7 +550,7 @@ const HeroContent: React.FC = () => {
             })}
           </ul>
 
-          <div className="flex flex-col items-center gap-4 pt-2 sm:flex-row sm:justify-center lg:justify-start">
+          <div className="flex flex-col items-stretch gap-3 pt-1 sm:flex-row sm:items-center sm:justify-center sm:gap-4 sm:pt-2 lg:justify-start">
             <div className="relative overflow-hidden rounded-full p-[2px] transition-transform duration-300 hover:scale-105 active:scale-95">
               <span
                 aria-hidden="true"
@@ -538,7 +559,7 @@ const HeroContent: React.FC = () => {
               <button
                 type="button"
                 onClick={() => open()}
-                className="group relative z-10 inline-flex items-center gap-3 whitespace-nowrap rounded-full bg-gold px-7 py-4 font-bold tracking-wide text-navy transition-shadow duration-300 hover:shadow-[0_0_30px_rgba(212,175,55,0.5)]"
+                className="group relative z-10 inline-flex w-full items-center justify-center gap-3 whitespace-nowrap rounded-full bg-gold px-6 py-3.5 font-bold tracking-wide text-navy transition-shadow duration-300 hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] sm:w-auto sm:px-7 sm:py-4"
               >
                 <span className="relative z-10">{HOME_HERO.primaryCta}</span>
                 <ArrowRight className="relative z-10 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -546,14 +567,14 @@ const HeroContent: React.FC = () => {
             </div>
             <Link
               href={HOME_HERO.secondaryHref}
-              className="inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-white/20 px-7 py-4 font-medium tracking-wide text-white transition-colors hover:border-gold/60 hover:bg-gold/10 hover:text-gold"
+              className="inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/20 px-6 py-3.5 font-medium tracking-wide text-white transition-colors hover:border-gold/60 hover:bg-gold/10 hover:text-gold sm:w-auto sm:px-7 sm:py-4"
             >
               {HOME_HERO.secondaryCta}
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           </div>
 
-          <p className="text-sm text-white/40">{HOME_HERO.note}</p>
+          <p className="fab-safe text-sm text-white/40 sm:pr-0">{HOME_HERO.note}</p>
         </div>
       </div>
     </div>
@@ -569,7 +590,7 @@ export default function ParticleEffectHero() {
       <HeroContent />
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30 pointer-events-none motion-safe:animate-pulse">
+      <div className="pointer-events-none absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-white/30 motion-safe:animate-pulse sm:flex">
         <span className="text-[10px] uppercase tracking-[0.2em]">Scroll</span>
         <MousePointer2 size={16} />
       </div>

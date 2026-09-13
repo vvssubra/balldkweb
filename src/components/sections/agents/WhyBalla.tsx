@@ -5,7 +5,7 @@ import { Reveal, RevealGroup } from "@/components/ui/reveal";
 
 export function WhyBalla() {
   return (
-    <section id="why" className="mx-auto max-w-6xl px-4 py-20 sm:px-6" aria-labelledby="why-heading">
+    <section id="why" className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20" aria-labelledby="why-heading">
       <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.3fr]">
         <Reveal variant="scale" className="mx-auto w-full max-w-xs overflow-hidden rounded-2xl border border-border shadow-sm lg:max-w-none">
           <Image

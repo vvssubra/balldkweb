@@ -17,7 +17,7 @@ export function OutcomeTransformation({
   const { open } = useScorecard();
 
   return (
-    <section id="how-rise-helps" className="bg-secondary px-4 py-20 sm:px-6" aria-labelledby="outcome-heading">
+    <section id="how-rise-helps" className="bg-secondary px-4 py-14 sm:px-6 sm:py-20" aria-labelledby="outcome-heading">
       <div className="mx-auto max-w-4xl">
         <Reveal variant="up" className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-semibold uppercase tracking-widest text-gold">How R.I.S.E. Helps</p>
@@ -27,7 +27,31 @@ export function OutcomeTransformation({
           {intro ? <p className="mt-4 text-muted-foreground">{intro}</p> : null}
         </Reveal>
 
-        <Reveal variant="flip" delay={100} className="rise-card mt-10 overflow-x-auto rounded-2xl">
+        {/* Two columns of prose are unreadable under 640px, so the same pairs are
+            stacked as before/after cards there. Only one of the two is ever in the
+            accessibility tree because the other is display:none. */}
+        <div className="rise-card mt-8 rounded-2xl px-5 py-1 sm:hidden">
+          <RevealGroup as="dl" variant="up" stagger={70} className="divide-y divide-border/70">
+            {OUTCOME_ROWS.map((row) => (
+              <div key={row.before} className="py-4">
+                <dt className="flex items-start gap-2 text-sm text-muted-foreground">
+                  <span aria-hidden="true" className="mt-px shrink-0 font-mono text-xs text-muted-foreground/60">
+                    Before
+                  </span>
+                  <span>{row.before}</span>
+                </dt>
+                <dd className="mt-1.5 flex items-start gap-2 text-sm font-medium text-foreground">
+                  <span aria-hidden="true" className="mt-px shrink-0 font-mono text-xs text-gold">
+                    After
+                  </span>
+                  <span>{row.after}</span>
+                </dd>
+              </div>
+            ))}
+          </RevealGroup>
+        </div>
+
+        <Reveal variant="flip" delay={100} className="rise-card mt-10 hidden overflow-x-auto rounded-2xl sm:block">
           <table className="w-full text-left text-sm">
             <thead>
               <tr className="border-b border-border">

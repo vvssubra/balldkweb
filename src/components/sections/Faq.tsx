@@ -17,7 +17,7 @@ export function Faq({ items = FAQ_ITEMS, heading = "Frequently Asked Questions" 
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="mx-auto max-w-3xl px-4 py-20 sm:px-6" aria-labelledby="faq-heading">
+    <section id="faq" className="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20" aria-labelledby="faq-heading">
       <Reveal as="h2" variant="up" id="faq-heading" className="text-center text-3xl font-bold sm:text-4xl">
         {heading}
       </Reveal>

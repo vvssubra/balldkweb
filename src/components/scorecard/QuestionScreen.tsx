@@ -24,16 +24,16 @@ export function QuestionScreen({
   const progress = Math.round((questionNumber / totalQuestions) * 100);
 
   return (
-    <div className="mx-auto flex h-full max-w-lg flex-col px-4 py-10">
+    <div className="mx-auto flex min-h-dvh max-w-lg flex-col px-4 py-6 sm:py-10">
       <div className="-mx-2 flex items-center justify-between">
         {canGoBack ? (
-          <button type="button" onClick={onBack} className="p-2 text-sm font-medium text-muted-foreground hover:text-foreground">
+          <button type="button" onClick={onBack} className="tap-target px-3 text-sm font-medium text-muted-foreground hover:text-foreground">
             Back
           </button>
         ) : (
           <span />
         )}
-        <button type="button" onClick={onClose} className="p-2 text-sm text-muted-foreground hover:text-foreground">
+        <button type="button" onClick={onClose} className="tap-target px-3 text-sm text-muted-foreground hover:text-foreground">
           Close
         </button>
       </div>
@@ -56,12 +56,12 @@ export function QuestionScreen({
 
       <div
         key={questionNumber}
-        className="mt-10 flex-1"
+        className="mt-8 flex-1 sm:mt-10"
         style={{ animation: "fade-up 0.22s cubic-bezier(0.16, 1, 0.3, 1) both" }}
       >
         <h2 className="text-xl font-bold sm:text-2xl">{question.text}</h2>
 
-        <div className="mt-8 flex flex-col gap-3" role="radiogroup" aria-label={question.text}>
+        <div className="mt-6 flex flex-col gap-3 sm:mt-8" role="radiogroup" aria-label={question.text}>
           {question.options.map((option) => {
             const isSelected = selectedScore === option.score;
             return (

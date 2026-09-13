@@ -16,7 +16,7 @@ interface SubpageHeroProps {
 /** Dark hero for /agents and /clients. Copy left, portrait right, no particle canvas. */
 export function SubpageHero({ eyebrow, headline, subheadline, note, imageSrc, imageAlt, actions }: SubpageHeroProps) {
   return (
-    <section id="top" className="relative overflow-hidden bg-navy px-4 py-20 text-white sm:px-6 lg:py-28">
+    <section id="top" className="relative overflow-hidden bg-navy px-4 py-14 text-white sm:px-6 sm:py-20 lg:py-28">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"

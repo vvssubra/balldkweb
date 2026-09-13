@@ -1,6 +1,13 @@
 import { siteWhatsAppLink } from "@/lib/whatsapp";
 
-/** Always-visible WhatsApp entry point. Rendered once in the root layout. */
+/**
+ * Always-visible WhatsApp entry point (analysis §Human Contact & AI).
+ * Rendered once in the root layout.
+ *
+ * Mobile sizing is deliberately smaller and tucked into the corner so it never
+ * sits on top of a section CTA; page sections reserve clearance with the
+ * `fab-safe` utility rather than the button moving out of the way.
+ */
 export function FloatingWhatsApp() {
   return (
     <a
@@ -8,9 +15,9 @@ export function FloatingWhatsApp() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with Balla on WhatsApp"
-      className="fixed bottom-6 right-6 z-40 flex size-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-transform hover:scale-110 active:scale-95"
+      className="fab-offset fixed z-40 flex size-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-transform hover:scale-110 active:scale-95 sm:size-14"
     >
-      <WhatsAppIcon className="size-7" />
+      <WhatsAppIcon className="size-6 sm:size-7" />
     </a>
   );
 }

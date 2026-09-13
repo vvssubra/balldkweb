@@ -5,7 +5,7 @@ import { Reveal, RevealGroup } from "@/components/ui/reveal";
 
 export function About() {
   return (
-    <section id="about" className="mx-auto max-w-6xl px-4 py-20 sm:px-6" aria-labelledby="about-heading">
+    <section id="about" className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20" aria-labelledby="about-heading">
       <div className="grid items-center gap-10 md:grid-cols-[minmax(0,320px)_1fr]">
         <Reveal variant="left" className="w-full">
         <TiltCard className="mx-auto w-full max-w-xs">

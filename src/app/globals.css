@@ -410,3 +410,59 @@
     opacity: 1;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Mobile ergonomics
+   --------------------------------------------------------------------------- */
+
+/* Floating WhatsApp button: corner-tucked, clear of the iOS home indicator. */
+.fab-offset {
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+}
+@media (min-width: 640px) {
+  .fab-offset {
+    right: max(1.5rem, env(safe-area-inset-right));
+    bottom: max(1.5rem, env(safe-area-inset-bottom));
+  }
+}
+
+/*
+ * Clearance for the floating button. Applied to the last action block in a
+ * section so a tappable CTA is never underneath the button on narrow screens.
+ * The button is ~48px plus its 16px offset, so 4.5rem keeps a comfortable gap.
+ */
+.fab-safe {
+  padding-right: 4.5rem;
+}
+@media (min-width: 640px) {
+  .fab-safe {
+    padding-right: 0;
+  }
+}
+
+/* Minimum comfortable touch target (WCAG 2.5.5 / iOS HIG). */
+.tap-target {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/*
+ * Body scroll lock while the full-screen scorecard is open. The provider also
+ * pins the body with position:fixed and restores the offset on close.
+ * Deliberately no touch-action here: on a touch device that would also block
+ * panning inside the overlay, which is the one thing that must still scroll.
+ */
+body.scorecard-open {
+  overflow: hidden;
+}
+
+/* Stop the grey flash on tap in mobile Safari and Chrome. */
+a,
+button,
+[role="button"],
+[role="tab"],
+[role="radio"] {
+  -webkit-tap-highlight-color: transparent;
+}

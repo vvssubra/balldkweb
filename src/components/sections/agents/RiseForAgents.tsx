@@ -17,7 +17,7 @@ export function RiseForAgents() {
   const { open } = useScorecard();
 
   return (
-    <section id="rise-for-agents" className="mx-auto max-w-6xl px-4 py-20 sm:px-6" aria-labelledby="rfa-heading">
+    <section id="rise-for-agents" className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20" aria-labelledby="rfa-heading">
       <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-center">
         <RevealGroup variant="left" stagger={100}>
           <p className="text-xs font-semibold uppercase tracking-widest text-gold">R.I.S.E. for Agents</p>

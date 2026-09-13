@@ -30,7 +30,7 @@ export function FinalCta({
   const { open } = useScorecard();
 
   return (
-    <section className="relative overflow-hidden bg-navy px-4 py-20 text-white sm:px-6" aria-labelledby="final-heading">
+    <section className="relative overflow-hidden bg-navy px-4 py-14 text-white sm:px-6 sm:py-20" aria-labelledby="final-heading">
       <Image
         src="/images/balla-dk-cta.jpg"
         alt=""

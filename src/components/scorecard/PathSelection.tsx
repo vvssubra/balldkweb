@@ -15,11 +15,11 @@ const CHOICES: readonly { label: string; path: ScorecardPath }[] = [
 
 export function PathSelection({ onSelect, onClose }: PathSelectionProps) {
   return (
-    <div className="mx-auto flex h-full max-w-lg flex-col justify-center px-4 py-12 text-center" style={{ animation: "fade-up 0.28s cubic-bezier(0.16, 1, 0.3, 1) both" }}>
+    <div className="mx-auto flex min-h-dvh max-w-lg flex-col justify-center px-4 py-10 text-center sm:py-12" style={{ animation: "fade-up 0.28s cubic-bezier(0.16, 1, 0.3, 1) both" }}>
       <button
         type="button"
         onClick={onClose}
-        className="absolute right-2 top-2 p-2 text-sm text-muted-foreground hover:text-foreground"
+        className="tap-target absolute right-2 top-2 px-3 text-sm text-muted-foreground hover:text-foreground"
       >
         Close
       </button>

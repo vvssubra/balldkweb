@@ -26,7 +26,7 @@ export function RisePyramid({
   const active = PYRAMID_LEVELS.find((level) => level.key === activeKey) ?? PYRAMID_LEVELS[0];
 
   return (
-    <section id="roadmap" className="bg-secondary px-4 py-20 sm:px-6" aria-labelledby="pyramid-heading">
+    <section id="roadmap" className="bg-secondary px-4 py-14 sm:px-6 sm:py-20" aria-labelledby="pyramid-heading">
       <div className="mx-auto max-w-6xl">
         <Reveal variant="up" className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-semibold uppercase tracking-widest text-gold">The R.I.S.E. Roadmap</p>
@@ -36,7 +36,7 @@ export function RisePyramid({
           <p className="mt-4 text-muted-foreground">{intro}</p>
         </Reveal>
 
-        <div className="mt-12 grid gap-8 lg:grid-cols-[1fr_1.2fr]">
+        <div className="mt-10 grid sm:mt-12 gap-8 lg:grid-cols-[1fr_1.2fr]">
           <RevealGroup variant="left" stagger={90} className="flex flex-col gap-3" role="tablist" aria-label="R.I.S.E. stages">
             {[...PYRAMID_LEVELS].reverse().map((level) => (
               <button

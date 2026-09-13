@@ -24,7 +24,7 @@ export function CareerPath() {
   const active = CAREER_STAGES.find((stage) => stage.key === activeKey) ?? CAREER_STAGES[0];
 
   return (
-    <section id="career-path" className="bg-navy px-4 py-20 text-white sm:px-6" aria-labelledby="career-heading">
+    <section id="career-path" className="bg-navy px-4 py-14 text-white sm:px-6 sm:py-20" aria-labelledby="career-heading">
       <div className="mx-auto max-w-6xl">
         <Reveal variant="up" className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-semibold uppercase tracking-widest text-gold">Career and Growth Path</p>
@@ -37,7 +37,7 @@ export function CareerPath() {
           </p>
         </Reveal>
 
-        <RevealGroup as="ol" variant="up" stagger={100} className="mt-12 grid gap-3 sm:grid-cols-4" role="tablist" aria-label="Career stages">
+        <RevealGroup as="ol" variant="up" stagger={100} className="mt-10 grid sm:mt-12 gap-3 sm:grid-cols-4" role="tablist" aria-label="Career stages">
           {CAREER_STAGES.map((stage, index) => {
             const isActive = stage.key === activeKey;
             return (

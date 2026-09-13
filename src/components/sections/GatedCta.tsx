@@ -24,7 +24,7 @@ export function GatedCta({ path, heading = "Discover Your Current R.I.S.E. Stage
   const showCareer = path !== "financial";
 
   return (
-    <section id="scorecard" className="bg-navy px-4 py-20 text-white sm:px-6" aria-labelledby="gated-heading">
+    <section id="scorecard" className="bg-navy px-4 py-14 text-white sm:px-6 sm:py-20" aria-labelledby="gated-heading">
       <div className="mx-auto max-w-4xl text-center">
         <Reveal variant="scale">
         <p className="text-xs font-semibold uppercase tracking-widest text-gold">Free R.I.S.E. Scorecard</p>

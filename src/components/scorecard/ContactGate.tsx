@@ -58,17 +58,17 @@ export function ContactGate({ path, onSubmit, onBack, onClose }: ContactGateProp
   const revealLabel = path === "financial" ? "Reveal My Financial R.I.S.E. Result" : "Reveal My Career R.I.S.E. Result";
 
   return (
-    <div className="mx-auto flex h-full max-w-lg flex-col px-4 py-10" style={{ animation: "fade-up 0.28s cubic-bezier(0.16, 1, 0.3, 1) both" }}>
+    <div className="mx-auto flex min-h-dvh max-w-lg flex-col px-4 py-6 sm:py-10" style={{ animation: "fade-up 0.28s cubic-bezier(0.16, 1, 0.3, 1) both" }}>
       <div className="-mx-2 flex items-center justify-between">
-        <button type="button" onClick={onBack} className="p-2 text-sm font-medium text-muted-foreground hover:text-foreground">
+        <button type="button" onClick={onBack} className="tap-target px-3 text-sm font-medium text-muted-foreground hover:text-foreground">
           Back
         </button>
-        <button type="button" onClick={onClose} className="p-2 text-sm text-muted-foreground hover:text-foreground">
+        <button type="button" onClick={onClose} className="tap-target px-3 text-sm text-muted-foreground hover:text-foreground">
           Close
         </button>
       </div>
 
-      <h2 className="mt-6 text-2xl font-bold sm:text-3xl">Almost there — where should we send your result?</h2>
+      <h2 className="mt-6 text-2xl font-bold sm:text-3xl">Almost there. Where should we send your result?</h2>
 
       <form onSubmit={handleSubmit} noValidate className="mt-8 flex flex-1 flex-col gap-4">
         <div>
@@ -79,6 +79,8 @@ export function ContactGate({ path, onSubmit, onBack, onClose }: ContactGateProp
             id="firstName"
             type="text"
             autoComplete="given-name"
+            autoCapitalize="words"
+            enterKeyHint="next"
             value={values.firstName}
             onChange={(e) => setValues((v) => ({ ...v, firstName: e.target.value }))}
             aria-invalid={Boolean(errors.firstName)}
@@ -101,6 +103,9 @@ export function ContactGate({ path, onSubmit, onBack, onClose }: ContactGateProp
             type="email"
             autoComplete="email"
             inputMode="email"
+            autoCapitalize="none"
+            autoCorrect="off"
+            enterKeyHint="next"
             value={values.email}
             onChange={(e) => setValues((v) => ({ ...v, email: e.target.value }))}
             aria-invalid={Boolean(errors.email)}
@@ -123,6 +128,7 @@ export function ContactGate({ path, onSubmit, onBack, onClose }: ContactGateProp
             type="tel"
             autoComplete="tel"
             inputMode="tel"
+            enterKeyHint="next"
             placeholder="+60123456789"
             value={values.whatsappNumber}
             onChange={(e) => setValues((v) => ({ ...v, whatsappNumber: e.target.value }))}
@@ -144,13 +150,14 @@ export function ContactGate({ path, onSubmit, onBack, onClose }: ContactGateProp
           <input
             id="goal"
             type="text"
+            enterKeyHint="done"
             value={values.goal}
             onChange={(e) => setValues((v) => ({ ...v, goal: e.target.value }))}
             className="mt-1 w-full rounded-lg border border-border bg-card px-4 py-3 text-base transition-colors focus:outline-none focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/30"
           />
         </div>
 
-        <label htmlFor="consent" className="mt-2 flex items-start gap-3 text-sm">
+        <label htmlFor="consent" className="mt-2 flex items-start gap-3 py-1 text-sm">
           <input
             id="consent"
             type="checkbox"
@@ -158,7 +165,7 @@ export function ContactGate({ path, onSubmit, onBack, onClose }: ContactGateProp
             onChange={(e) => setValues((v) => ({ ...v, consent: e.target.checked }))}
             aria-invalid={Boolean(errors.consent)}
             aria-describedby={errors.consent ? "consent-error" : undefined}
-            className="mt-1 size-4 shrink-0"
+            className="mt-0.5 size-5 shrink-0"
           />
           <span>{CONSENT_MICROCOPY}</span>
         </label>
@@ -170,7 +177,7 @@ export function ContactGate({ path, onSubmit, onBack, onClose }: ContactGateProp
 
         <button
           type="submit"
-          className="mt-4 w-full rounded-full bg-primary px-6 py-3.5 text-sm font-bold text-primary-foreground transition-transform hover:scale-105 active:scale-95"
+          className="mt-4 w-full rounded-full bg-primary px-6 py-4 text-base font-bold text-primary-foreground transition-transform hover:scale-105 active:scale-95 sm:py-3.5 sm:text-sm"
         >
           {revealLabel}
         </button>

@@ -71,7 +71,7 @@ export const PYRAMID_LEVELS: readonly PyramidLevel[] = [
     key: "R",
     name: "RESTORE",
     step: "Safety Net & Clean Up",
-    problem: "Your foundation — protection, savings and cash flow — may have gaps.",
+    problem: "Your foundation of protection, savings and cash flow may have gaps.",
     outcome: "A stable base: emergency buffer, clear protection and manageable cash flow.",
   },
   {

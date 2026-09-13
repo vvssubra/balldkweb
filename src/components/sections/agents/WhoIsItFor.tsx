@@ -5,7 +5,7 @@ import { Reveal, RevealGroup } from "@/components/ui/reveal";
 
 export function WhoIsItFor() {
   return (
-    <section id="who" className="bg-secondary px-4 py-20 sm:px-6" aria-labelledby="who-heading">
+    <section id="who" className="bg-secondary px-4 py-14 sm:px-6 sm:py-20" aria-labelledby="who-heading">
       <div className="mx-auto max-w-6xl">
         <Reveal variant="blur" className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-semibold uppercase tracking-widest text-gold">Who Is It For?</p>
@@ -14,7 +14,7 @@ export function WhoIsItFor() {
           </h2>
         </Reveal>
 
-        <RevealGroup as="ul" variant="scale" stagger={80} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <RevealGroup as="ul" variant="scale" stagger={80} className="mt-10 grid sm:mt-12 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {AGENT_PROFILES.map((profile) => (
             <li key={profile.title} className="rise-card rounded-2xl p-6">
               <UserCheck className="size-5 text-gold" aria-hidden="true" />

@@ -115,7 +115,7 @@ export function HowItWorks({ steps = HOW_IT_WORKS_STEPS, heading = "How the Scor
   }, []);
 
   return (
-    <section id="how-it-works" className="bg-secondary px-4 py-20 sm:px-6" aria-labelledby="how-heading">
+    <section id="how-it-works" className="bg-secondary px-4 py-14 sm:px-6 sm:py-20" aria-labelledby="how-heading">
       <div className="mx-auto max-w-6xl">
         <Reveal variant="up" className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-semibold uppercase tracking-widest text-gold">Three Steps</p>
@@ -128,7 +128,7 @@ export function HowItWorks({ steps = HOW_IT_WORKS_STEPS, heading = "How the Scor
           </p>
         </Reveal>
 
-        <ol ref={ref} className={`steps-rail relative mt-14 grid gap-10 sm:grid-cols-3 sm:gap-6 ${inView ? "in-view" : ""}`}>
+        <ol ref={ref} className={`steps-rail relative mt-10 grid gap-8 sm:mt-14 sm:grid-cols-3 sm:gap-6 ${inView ? "in-view" : ""}`}>
           {/* Rail behind the numbered nodes. Fills gold left→right once in view. Desktop only. */}
           <div aria-hidden="true" className="absolute left-[16.67%] right-[16.67%] top-5 hidden h-0.5 bg-border sm:block">
             <div className="rail-fill h-full origin-left bg-gold" />
@@ -143,7 +143,7 @@ export function HowItWorks({ steps = HOW_IT_WORKS_STEPS, heading = "How the Scor
                 </span>
 
                 <div className="mt-6 flex w-full flex-1 flex-col rounded-2xl border border-border bg-card p-5 shadow-sm transition-transform duration-300 hover:-translate-y-1">
-                  <div className="flex min-h-[188px] items-center rounded-xl bg-secondary/70 p-4">
+                  <div className="flex min-h-[150px] items-center rounded-xl bg-secondary/70 p-3 sm:min-h-[188px] sm:p-4">
                     <Mock />
                   </div>
                   <h3 className="mt-5 font-heading font-semibold">{step.title}</h3>

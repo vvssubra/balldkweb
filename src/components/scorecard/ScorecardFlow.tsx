@@ -83,7 +83,7 @@ export function ScorecardFlow({ initialPath, onClose }: ScorecardFlowProps) {
       role="dialog"
       aria-modal="true"
       aria-label="R.I.S.E. Scorecard"
-      className="fixed inset-0 z-50 overflow-y-auto bg-background"
+      className="fixed inset-0 z-50 overflow-y-auto overscroll-contain bg-background"
     >
       {step === "path" ? <PathSelection onSelect={handleSelectPath} onClose={onClose} /> : null}
 

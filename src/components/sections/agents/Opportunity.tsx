@@ -4,7 +4,7 @@ import { Reveal, RevealGroup } from "@/components/ui/reveal";
 
 export function Opportunity() {
   return (
-    <section id="opportunity" className="mx-auto max-w-6xl px-4 py-20 sm:px-6" aria-labelledby="opportunity-heading">
+    <section id="opportunity" className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20" aria-labelledby="opportunity-heading">
       <Reveal variant="up" className="mx-auto max-w-2xl text-center">
         <p className="text-xs font-semibold uppercase tracking-widest text-gold">The Opportunity</p>
         <h2 id="opportunity-heading" className="mt-2 text-3xl font-bold sm:text-4xl">
@@ -15,7 +15,7 @@ export function Opportunity() {
         </p>
       </Reveal>
 
-      <RevealGroup variant="sides" stagger={110} className="mt-12 grid gap-6 md:grid-cols-2">
+      <RevealGroup variant="sides" stagger={110} className="mt-10 grid sm:mt-12 gap-6 md:grid-cols-2">
         {OPPORTUNITY_POINTS.map((point, index) => (
           <article key={point.title} className="rise-card rounded-2xl p-8">
             <span className="font-mono text-xs text-gold">0{index + 1}</span>

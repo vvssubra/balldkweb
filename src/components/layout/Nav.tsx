@@ -94,7 +94,7 @@ export function Nav() {
   return (
     <header className="sticky top-0 z-30 border-b border-white/10 bg-navy/90 backdrop-blur-sm">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6" aria-label="Primary">
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="-my-1 flex items-center gap-2 py-1">
           <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gold text-sm font-bold text-navy">
             B
           </span>
@@ -157,8 +157,8 @@ export function Nav() {
       </nav>
 
       {drawerOpen ? (
-        <div className="border-t border-white/10 bg-navy px-4 py-4 md:hidden">
-          <ul className="flex flex-col gap-4 text-sm font-medium text-white/80">
+        <div className="border-t border-white/10 bg-navy px-4 py-2 md:hidden">
+          <ul className="flex flex-col text-sm font-medium text-white/80">
             {NAV_LINKS.map((link) => (
               <li key={link.href}>
                 <Link
@@ -167,6 +167,7 @@ export function Nav() {
                     setActiveHref(link.href);
                     setDrawerOpen(false);
                   }}
+                  className="flex min-h-11 items-center border-b border-white/5 transition-colors hover:text-white"
                 >
                   {link.label}
                 </Link>
@@ -179,7 +180,7 @@ export function Nav() {
               setDrawerOpen(false);
               open();
             }}
-            className="mt-4 w-full rounded-full bg-gold px-5 py-3 text-sm font-bold text-navy"
+            className="my-3 w-full rounded-full bg-gold px-5 py-3.5 text-sm font-bold text-navy"
           >
             Take the R.I.S.E. Scorecard
           </button>

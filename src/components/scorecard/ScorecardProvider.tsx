@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { ScorecardFlow } from "./ScorecardFlow";
 import type { ScorecardPath } from "@/lib/scoring/types";
 
@@ -24,6 +24,25 @@ export function ScorecardProvider({ children }: { children: ReactNode }) {
   const open = useCallback((path?: ScorecardPath) => setScorecardPath(path ?? null), []);
   const close = useCallback(() => setScorecardPath(undefined), []);
   const isOpen = scorecardPath !== undefined;
+
+  // Lock the page behind the full-screen scorecard. Without this the body scrolls
+  // under the fixed overlay on touch devices, which loses the visitor's place.
+  useEffect(() => {
+    if (!isOpen) return;
+    const { body } = document;
+    const scrollY = window.scrollY;
+    body.classList.add("scorecard-open");
+    body.style.top = `-${scrollY}px`;
+    body.style.position = "fixed";
+    body.style.width = "100%";
+    return () => {
+      body.classList.remove("scorecard-open");
+      body.style.top = "";
+      body.style.position = "";
+      body.style.width = "";
+      window.scrollTo(0, scrollY);
+    };
+  }, [isOpen]);
 
   const value = useMemo(() => ({ open, close, isOpen }), [open, close, isOpen]);
 

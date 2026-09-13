@@ -40,7 +40,7 @@ export function HowBallaCanHelp({ ctaHref = "#scorecard", ctaLabel = "Know Your 
   }
 
   return (
-    <section id="how-balla-helps" className="relative overflow-hidden bg-navy px-4 py-20 text-white sm:px-6" aria-labelledby="help-heading">
+    <section id="how-balla-helps" className="relative overflow-hidden bg-navy px-4 py-14 text-white sm:px-6 sm:py-20" aria-labelledby="help-heading">
       <AntiGravityCanvas shootingStars />
 
       {/* Empty space lets the pointer reach the canvas; cards and CTA re-enable events. */}
@@ -62,7 +62,7 @@ export function HowBallaCanHelp({ ctaHref = "#scorecard", ctaLabel = "Know Your 
           stagger={90}
           threshold={0.1}
           onPointerMove={handleMove}
-          className="group/grid pointer-events-auto mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3"
+          className="group/grid pointer-events-auto mt-10 grid sm:mt-12 gap-5 md:grid-cols-2 lg:grid-cols-3"
         >
           {HELP_AREAS.map((area) => {
             const stage = STAGE[area.stage];

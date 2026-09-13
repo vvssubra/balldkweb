@@ -10,7 +10,7 @@ import { Reveal, RevealGroup } from "@/components/ui/reveal";
  */
 export function Consultation() {
   return (
-    <section id="consultation" className="bg-secondary px-4 py-20 sm:px-6" aria-labelledby="consult-heading">
+    <section id="consultation" className="bg-secondary px-4 py-14 sm:px-6 sm:py-20" aria-labelledby="consult-heading">
       <div className="mx-auto max-w-4xl">
         <Reveal variant="blur" className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-semibold uppercase tracking-widest text-gold">Before You Message Me</p>
@@ -20,7 +20,7 @@ export function Consultation() {
           <p className="mt-4 text-muted-foreground">{CONSULTATION.intro}</p>
         </Reveal>
 
-        <RevealGroup as="ol" variant="sides" stagger={110} className="mt-12 grid gap-6 sm:grid-cols-2">
+        <RevealGroup as="ol" variant="sides" stagger={110} className="mt-10 grid sm:mt-12 gap-6 sm:grid-cols-2">
           {CONSULTATION.steps.map((step, index) => (
             <li key={step.title} className="rise-card flex gap-4 rounded-2xl p-6">
               <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-gold text-sm font-bold text-navy">

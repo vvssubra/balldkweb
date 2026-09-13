@@ -39,9 +39,9 @@ export function ResultScreen({ firstName, path, categoryResults, missingLetter, 
   }
 
   return (
-    <div className="mx-auto flex h-full max-w-lg flex-col px-4 py-10">
+    <div className="mx-auto flex min-h-dvh max-w-lg flex-col px-4 py-6 sm:py-10">
       <div className="-mx-2 -mt-2 flex justify-end">
-        <button type="button" onClick={onClose} className="p-2 text-sm text-muted-foreground hover:text-foreground">
+        <button type="button" onClick={onClose} className="tap-target px-3 text-sm text-muted-foreground hover:text-foreground">
           Close
         </button>
       </div>
@@ -72,7 +72,7 @@ export function ResultScreen({ firstName, path, categoryResults, missingLetter, 
                 <span className="font-heading font-semibold">{result.category}</span>
                 <span className="flex items-center gap-1.5 text-sm font-medium">
                   <Icon className="size-4" aria-hidden="true" />
-                  {TIER_LABEL[result.tier]} — {result.normalisedScore}%
+                  {TIER_LABEL[result.tier]} · {result.normalisedScore}%
                 </span>
               </div>
               <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-secondary">

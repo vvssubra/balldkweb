@@ -48,7 +48,7 @@ export function PathCards() {
   }, []);
 
   return (
-    <section id="paths" className="relative overflow-hidden bg-background px-4 py-20 sm:px-6" aria-labelledby="paths-heading">
+    <section id="paths" className="relative overflow-hidden bg-background px-4 py-14 sm:px-6 sm:py-20" aria-labelledby="paths-heading">
       <div className="mx-auto max-w-6xl">
         <Reveal variant="up" className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-semibold uppercase tracking-widest text-gold">Choose Your Path</p>
@@ -151,7 +151,7 @@ export function PathCards() {
                       <button
                         type="button"
                         onClick={() => open(card.path)}
-                        className="text-sm font-medium text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline"
+                        className="min-h-11 text-sm font-medium text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline"
                       >
                         {card.scorecardCta}
                       </button>

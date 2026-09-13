@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
 import { ScorecardProvider } from "@/components/scorecard/ScorecardProvider";
@@ -27,6 +27,12 @@ export const metadata: Metadata = {
       "Free R.I.S.E. Scorecard. Understand your financial or career position and find your next step with Balla DK.",
     type: "website",
   },
+};
+
+/** Mobile browser chrome matches the navy header instead of flashing white. */
+export const viewport: Viewport = {
+  themeColor: "#060d1a",
+  colorScheme: "light",
 };
 
 export default function RootLayout({

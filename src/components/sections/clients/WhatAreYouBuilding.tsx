@@ -17,7 +17,7 @@ export function WhatAreYouBuilding() {
   const { open } = useScorecard();
 
   return (
-    <section id="build" className="mx-auto max-w-6xl px-4 py-20 sm:px-6" aria-labelledby="build-heading">
+    <section id="build" className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20" aria-labelledby="build-heading">
       <Reveal variant="up" className="mx-auto max-w-2xl text-center">
         <p className="text-xs font-semibold uppercase tracking-widest text-gold">Start Here</p>
         <h2 id="build-heading" className="mt-2 text-3xl font-bold sm:text-4xl">
@@ -28,7 +28,7 @@ export function WhatAreYouBuilding() {
         </p>
       </Reveal>
 
-      <RevealGroup as="ul" variant="flip" stagger={90} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+      <RevealGroup as="ul" variant="flip" stagger={90} className="mt-10 grid sm:mt-12 gap-6 sm:grid-cols-2 lg:grid-cols-5">
         {CLIENT_GOALS.map((goal) => (
           <li key={goal.title} className={`rise-card rounded-2xl border-t-2 p-6 ${STAGE_BORDER[goal.stage]}`}>
             <h3 className="font-heading text-lg font-semibold">{goal.title}</h3>
