@@ -485,23 +485,28 @@ const HeroContent: React.FC = () => {
 
   return (
     <div className="pointer-events-none relative z-10 mx-auto flex min-h-dvh w-full max-w-7xl flex-col justify-center px-4 py-8 sm:px-6 sm:py-20 lg:px-8">
-      <div className="pointer-events-auto grid items-center gap-5 sm:gap-10 lg:block">
-        {/* Portrait. Circular crop on mobile so the copy stays above the fold. From lg it
-            leaves the flow and spans the whole section: it runs off the right edge of the
+      <div className="pointer-events-auto grid items-center gap-3 sm:gap-10 lg:block">
+        {/* Portrait. Below lg it's a full-bleed band flush at the top of the hero, edges
+            cancelling the section's own side padding so it runs to both screen edges like
+            desktop's off-viewport bleed. No circle, no ring: same "no edges" language as
+            desktop, just rotated — the feather faces down into the copy that stacks below
+            it instead of sideways. Height is viewport-relative and capped low enough that
+            both CTAs and the reassurance line still clear the fold on short phones. From lg
+            it leaves the flow and spans the whole section: it runs off the right edge of the
             viewport, its top sits under the nav and its bottom meets the next navy
             section, so the only edge left to hide is the one facing the copy. */}
-        <div className="relative order-first mx-auto w-full max-w-[5.5rem] sm:max-w-[9rem] lg:pointer-events-none lg:absolute lg:inset-y-0 lg:right-[calc(-1*max(0px,(100vw_-_80rem)/2))] lg:m-0 lg:w-[44%] lg:max-w-none">
+        <div className="relative order-first -mx-4 w-[calc(100%+2rem)] sm:-mx-6 sm:w-[calc(100%+3rem)] lg:pointer-events-none lg:absolute lg:inset-y-0 lg:right-[calc(-1*max(0px,(100vw_-_80rem)/2))] lg:m-0 lg:w-[44%] lg:max-w-none">
           <div
             aria-hidden="true"
             className="pointer-events-none absolute -inset-10 hidden rounded-full bg-[radial-gradient(circle_at_50%_38%,rgba(212,175,55,0.16),transparent_68%)] blur-2xl lg:block"
           />
-          <div className="relative aspect-square h-full overflow-hidden rounded-full border-2 border-gold/60 transition-colors duration-300 hover:border-gold lg:aspect-auto lg:rounded-none lg:border-0 lg:[mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.35)_18%,#000_46%)] lg:[-webkit-mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.35)_18%,#000_46%)]">
+          <div className="relative h-[clamp(110px,20vh,160px)] w-full overflow-hidden [mask-image:linear-gradient(to_bottom,#000_50%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,#000_50%,transparent_100%)] sm:h-[clamp(160px,26vh,240px)] lg:h-full lg:[mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.35)_18%,#000_46%)] lg:[-webkit-mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.35)_18%,#000_46%)]">
             <Image
               src="/images/balla-dk-hero.jpg"
               alt={HOME_HERO.portraitAlt}
               fill
               priority
-              sizes="(min-width: 1024px) 45vw, 9rem"
+              sizes="(min-width: 1024px) 45vw, 100vw"
               className="object-cover object-top lg:object-[50%_30%]"
             />
             {/* The copy-facing edge is feathered by the mask above rather than a wash: a
