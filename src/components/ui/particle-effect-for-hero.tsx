@@ -507,7 +507,7 @@ const HeroContent: React.FC = () => {
               fill
               priority
               sizes="(min-width: 1024px) 45vw, 100vw"
-              className="object-cover object-top lg:object-[50%_30%]"
+              className="object-cover object-[50%_28%]"
             />
             {/* The copy-facing edge is feathered by the mask above rather than a wash: a
                 navy wash would paint over the canvas glow behind it and leave a seam.
