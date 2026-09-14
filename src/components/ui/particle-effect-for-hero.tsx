@@ -484,13 +484,13 @@ const HeroContent: React.FC = () => {
   const { open } = useScorecard();
 
   return (
-    <div className="pointer-events-none relative z-10 mx-auto flex min-h-dvh w-full max-w-7xl flex-col justify-center px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
-      <div className="pointer-events-auto grid items-center gap-10 lg:block">
+    <div className="pointer-events-none relative z-10 mx-auto flex min-h-dvh w-full max-w-7xl flex-col justify-center px-4 py-8 sm:px-6 sm:py-20 lg:px-8">
+      <div className="pointer-events-auto grid items-center gap-5 sm:gap-10 lg:block">
         {/* Portrait. Circular crop on mobile so the copy stays above the fold. From lg it
             leaves the flow and spans the whole section: it runs off the right edge of the
             viewport, its top sits under the nav and its bottom meets the next navy
             section, so the only edge left to hide is the one facing the copy. */}
-        <div className="relative order-first mx-auto w-full max-w-[7rem] sm:max-w-[9rem] lg:pointer-events-none lg:absolute lg:inset-y-0 lg:right-[calc(-1*max(0px,(100vw_-_80rem)/2))] lg:m-0 lg:w-[44%] lg:max-w-none">
+        <div className="relative order-first mx-auto w-full max-w-[5.5rem] sm:max-w-[9rem] lg:pointer-events-none lg:absolute lg:inset-y-0 lg:right-[calc(-1*max(0px,(100vw_-_80rem)/2))] lg:m-0 lg:w-[44%] lg:max-w-none">
           <div
             aria-hidden="true"
             className="pointer-events-none absolute -inset-10 hidden rounded-full bg-[radial-gradient(circle_at_50%_38%,rgba(212,175,55,0.16),transparent_68%)] blur-2xl lg:block"
@@ -516,20 +516,20 @@ const HeroContent: React.FC = () => {
           </div>
         </div>
 
-        <div className="space-y-5 text-center sm:space-y-6 lg:max-w-[54%] lg:text-left">
+        <div className="space-y-3 text-center sm:space-y-6 lg:max-w-[54%] lg:text-left">
           <div className="inline-block">
             <span className="rounded-full border border-gold/30 bg-gold/5 px-3 py-1 font-mono text-xs uppercase tracking-widest text-gold backdrop-blur-sm">
               {HOME_HERO.eyebrow}
             </span>
           </div>
 
-          <h1 className="text-balance text-4xl font-bold leading-[1.08] tracking-tighter text-white sm:text-5xl lg:text-[3rem] xl:text-[3.35rem]">
+          <h1 className="text-balance text-[1.85rem] font-bold leading-[1.1] tracking-tighter text-white sm:text-5xl lg:text-[3rem] xl:text-[3.35rem]">
             {HOME_HERO.headline}
             <br />
             <span className="text-gold">{HOME_HERO.headlineAccent}</span>
           </h1>
 
-          <p className="mx-auto max-w-xl text-base font-light leading-relaxed text-white/60 sm:text-lg lg:mx-0">
+          <p className="mx-auto max-w-xl text-sm font-light leading-snug text-white/60 sm:text-lg sm:leading-relaxed lg:mx-0">
             {HOME_HERO.subheadline}
           </p>
 
@@ -550,7 +550,7 @@ const HeroContent: React.FC = () => {
             })}
           </ul>
 
-          <div className="flex flex-col items-stretch gap-3 pt-1 sm:flex-row sm:items-center sm:justify-center sm:gap-4 sm:pt-2 lg:justify-start">
+          <div className="flex flex-col items-stretch gap-2.5 pt-1 sm:flex-row sm:items-center sm:justify-center sm:gap-4 sm:pt-2 lg:justify-start">
             <div className="relative overflow-hidden rounded-full p-[2px] transition-transform duration-300 hover:scale-105 active:scale-95">
               <span
                 aria-hidden="true"
@@ -559,7 +559,7 @@ const HeroContent: React.FC = () => {
               <button
                 type="button"
                 onClick={() => open()}
-                className="group relative z-10 inline-flex w-full items-center justify-center gap-3 whitespace-nowrap rounded-full bg-gold px-6 py-3.5 font-bold tracking-wide text-navy transition-shadow duration-300 hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] sm:w-auto sm:px-7 sm:py-4"
+                className="group relative z-10 inline-flex w-full items-center justify-center gap-3 whitespace-nowrap rounded-full bg-gold px-6 py-3 font-bold tracking-wide text-navy transition-shadow duration-300 hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] sm:w-auto sm:px-7 sm:py-4"
               >
                 <span className="relative z-10">{HOME_HERO.primaryCta}</span>
                 <ArrowRight className="relative z-10 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -567,14 +567,14 @@ const HeroContent: React.FC = () => {
             </div>
             <Link
               href={HOME_HERO.secondaryHref}
-              className="inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/20 px-6 py-3.5 font-medium tracking-wide text-white transition-colors hover:border-gold/60 hover:bg-gold/10 hover:text-gold sm:w-auto sm:px-7 sm:py-4"
+              className="inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/20 px-6 py-3 font-medium tracking-wide text-white transition-colors hover:border-gold/60 hover:bg-gold/10 hover:text-gold sm:w-auto sm:px-7 sm:py-4"
             >
               {HOME_HERO.secondaryCta}
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           </div>
 
-          <p className="fab-safe text-sm text-white/40 sm:pr-0">{HOME_HERO.note}</p>
+          <p className="fab-safe text-xs text-white/40 sm:pr-0 sm:text-sm">{HOME_HERO.note}</p>
         </div>
       </div>
     </div>
